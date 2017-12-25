@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<head>
+<title>Policy Gradients</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+
+ <div id="t">
+&ensp;Notes on Policy Gradients
+ </div>
+
+ <div id="p">
+Policy Gradients is a Reinforcement Learning optimization method, this means that there are no functions such as \(V(s)\) or \(Q(s,a)\) involved to find a good policy indirectly. In this kind of method, the goal is to directly find a policy \( \pi_{\theta}(u|s) \) which is a distribution over actions \( u \) given a state \( s \) that maximizes the expected sum of rewards.
+<br><br>
+As the policy a function aproximator such as a neural network parameterized by \( \theta \) can be used, this network takes as an input information about the state \( s_{t} \) and outputs a distribution over possible actions. To act, in any given time, we sample from that distribution an action \( u_{t} \) and see what state \( s_{t+1} \) and reward \( r_{t+1} \) are returned from the environment.
+<br><br>
+As opposed to state-value function \( V(s) \) and action-value function \( Q(s,a) \) methods, \(\theta\) is not used to predict the value or quality of a given state but to parameterize the policy directly.
+ </div>
+
+ <div id="st">
+&ensp;Policy optimization
+ </div>
+
+ <div id="p">
+As stated before, the goal is to find a policy, which outputs a distribution over actions for any given state, to maximize the expected sum of rewards throughout a sequence of states and actions. This can be framed as an optimization problem that can be achieved by changing the parameters \(\theta\) of the neural network.
+ 
+<span style="font-size:20px;">
+$$
+\newcommand{\E}{\mathrm{E}}
+\underset{\theta}{\text{max}}\quad \E \Big[ \sum_{t=0}^{H} R(s_{t})\ |\ \pi_{\theta}\ \Big]
+$$
+</span>
+
+As it can be read from the expression above, what is to be maximized is the expectation of the sum of rewards through several states under a given policy. Therefore, the sum of rewards given the policy has to be treated as a random variable.
+ </div>
+
+ <div id="st">
+&ensp;Likelihood Ratio Policy Gradient
+ </div>
+
+ <div id="p">
+In order to go further with the optimization process, it is convinient to introduce some notation that will allow us to represent the problem in a more compact fashion. Hence, \( \tau \) will denote a state-action sequence.
+$$
+\tau = s_{0},u_{0},...,s_{H},u_{H}
+$$
+Rewards can be expressed as the summation of the individual rewards over the entire trajectory \( \tau \).
+
+$$
+R(\tau) = \sum_{t=0}^HR(s_{t},u_{t})
+$$
+
+Apart from the total reward of a state-action sequence, we can talk about the concept of utility which is the expectation of the sum of individual rewards along \( \tau \) under \( \pi_{\theta} \).
+
+$$
+U(\theta) = \E \Big[ \sum_{t=0}^{H} R(s_{t},u_{t});\pi_{\theta}\ \Big]
+$$
+
+So, the utility of \( \theta \) is nothing but the expected value of the reward of trajectories \( R(\tau) \) following a parameterized policy \( \pi_{\theta} \). Given that the utility is an expectation of total reward over all possible trajectories, it can also be expressed as a sum of products where each product contains a trajectory reward times its probability. This is true because an expectation is the same as a weighted sum where each weight represents how frequent each \(R(\tau)\) is.
+
+$$
+U(\theta) = \E \Big[ \sum_{t=0}^{H} R(s_{t},u_{t});\pi_{\theta}\ \Big] = 
+\sum_{\tau}P(\tau;\theta)R(\tau)
+$$
+From the previous equation, it becomes more evident what utility means; it is the expected reward that can be obtained throughout many different state-action sequences if we follow a certain policy. Since we are talking about policy optimization, the idea behind all this formulation is to enhance the policy in order to obtain as much reward as possible regardless the trajectory that occurs.
+<br><br>
+Thus, by "maximizing the utility" we mean to increase the probabilities of obtaining rewards over several state-action sequences. And, since these probabilities are parameterized by \( \theta \), it is by chainging these that it becomes possible to increase the likelihood of obtaining greater rewards.
+$$
+\underset{\theta}{\text{max}}\ U(\theta) =
+\underset{\theta}{\text{max}}\ \sum_{\tau}P(\tau;\theta)R(\tau)
+$$
+The intuition from above should be clearer by now because the utility is a function of the parameters. For a particular set of \( \theta \) a certain level of reward can be attained, if a different set of parameters is fed into the utility function then a different amount of total reward will be observed.
+<br><br>
+To go on with the optimization the previous equation has to be derived, we need to calculate the gradient of the utility function with respect to \( \theta \).
+$$
+\begin{align*}
+\nabla_{\theta}U(\theta) &= \nabla_{\theta} \sum_{\tau}P(\tau;\theta)R(\tau)
+\\ &= \sum_{\tau}\nabla_{\theta} P(\tau;\theta)R(\tau) \quad \tiny\texttt{The gradient of the sum is the sum of the gradients.}
+\\ &= \sum_{\tau} \frac{P(\tau;\theta)}{P(\tau;\theta)} \nabla_{\theta}P(\tau;\theta)R(\tau) \quad \tiny\texttt{A little trick.}
+\\ &= \sum_{\tau} P(\tau;\theta) \frac{\nabla_{\theta}P(\tau;\theta)}{P(\tau;\theta)}R(\tau) \quad \tiny\texttt{Same value, different ratio.}
+\\ &= \sum_{\tau} P(\tau;\theta) \nabla_{\theta}\log{P(\tau;\theta)} R(\tau) \quad \tiny\texttt{This is true since $
+\frac{d}{dx}\log{f(x)} = \frac{f^\prime(x)}{f(x)}
+$.}
+\\ &= \E \Big[ \nabla_{\theta}\log{P(\tau;\theta)} R(\tau) \Big]
+\end{align*}
+$$
+
+There are two good reasons for arranging the equations as shown in the previous steps. The first one has to do with the last expression we ended up with, it is the expectation of the gradient of the probability of a given sequence under our policy times its reward. Because we endend up with an expectation we now have a value that we can approximate through a sampe-based estimation.
+
+$$
+\nabla U(\theta) \approx \hat{g} = \frac{1}{m} \sum_{i=1}^{m} \nabla_{\theta} \log{P(\tau^{(i)};\theta)}R(\tau^{(i)})
+$$
+
+The second reason is that, given that we have a log probability of a sequence under a policy, we can decompose that part of the equation into an expression that explicitly reflects the probability of a path of states and actions.
+
+$$
+\begin{align*}
+\nabla_{\theta} \log{P(\tau^{(i)};\theta)} &= \nabla_{\theta}
+\log{\Bigg[ \prod_{t=0}^{H} P(s_{t+1}^{(i)}|s_{t}^{(i)},u_{t}^{(i)})\cdot \pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)}) \Bigg]}
+\\ &= \nabla_{\theta} \Bigg[ \sum_{t=0}^{H}\log{P(s_{t+1}^{(i)}|s_{t}^{(i)},u_{t}^{(i)})} + \sum_{t=0}^{H}\log{\pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)})} \Bigg]
+\end{align*}
+$$
+
+The equation from above expresses the probability of a path as the probability of a state transition under an action, all as independent events. Due to logarithm rules, the log of a product can also be expressed as the sum of logarithms and so can our equation.
+<br><br>
+As the expression is derived with respect to \( \theta \), the first summation inside the brackets does not have any parameters to derive so it can simply be dropped. That leaves us with just the gradient of the policy with respect to \(\theta\).
+
+$$
+\begin{align*}
+\nabla_{\theta} \log{P(\tau^{(i)};\theta}) &= \nabla_{\theta} \sum_{t=0}^{H}\log{\pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)})}
+\\ &= \sum_{t=0}^{H}\nabla_{\theta} \log{\pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)})}
+\end{align*}
+$$
+
+Now, we can arrange the gradient estimation as follows.
+
+$$
+\begin{align*}
+\hat{g} &= \frac{1}{m} \sum_{i=1}^{m} \sum_{t=0}^{H}\nabla_{\theta} \log{\pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)})}
+ R(\tau^{(i)})
+\\ &= \frac{1}{m} \sum_{i=1}^{m} \Bigg( \sum_{t=0}^{H}\nabla_{\theta} \log{\pi_{\theta}(u_{t}^{(i)}|s_{t}^{(i)})} \cdot R(s_{t}^{(i)},u_{t}^{(i)}) \Bigg)
+\end{align*}
+$$
+
+According to the value of the total reward, the gradient of the log probability of an action given a statue will be increased or decreased. In other words, the gradient of the policy will be scaled in proportion to how good the reward was for a given sequence.
+ </div>
+
+ <div id="st">
+&ensp;Supervised learning similarities
+ </div>
+
+ <div id="p">
+So far, the policy has been denoted by \( \pi_{\theta}(u_{t}|s_{t})\). A policy is a function that maps from states to actions; therefore, using a neural network as a function aproximator will serve this purpose. Since the policy is supposed to output a probability distribution over actions, the best choice for an output layer is a softmax function.
+
+$$
+\pi_{\theta}(a | s) = \frac{e^{z_{a}}}{\sum_{k}e^{z_{k}}} 
+$$
+
+Since what we actually want is the gradient of the log probabilities of possible actions, estimating our policy gradients is going to be very similar to performing gradient descent for a classification task with a multi-class cross-entropy error function.
+<br><br>
+Let \( \mathbf{y} \) denote the output of a neural network with a softmax function as the activation of its last layer and \( \mathbf{t} \) a 'one-hot encoded' vector. Then, the error function is:
+
+$$
+E = -\sum_{i} t_{i} \log{ y_{i} }
+$$
+
+By estimating the gradient of the error function with respect to the parameters of a neural network, and updating these parameters with these gradients, the network can learn.
+<br><br>
+In order to estimate the gradient of the error function with respect to the parameters of the last layer of a network, \( L \) will denote the number of layers, \( \mathbf{h}^{(L)} \) the output of the previous layer and \( \mathbf{z}^{(L)} \) the result of the multiplication of \( \mathbf{h}^{(L)} \) by the weight matrix \( \mathbf{w}^{(L)} \).
+
+$$
+y_{i} = \frac{e^{z_{i}^{(L)}}}{\sum_{k} e^{z_{k}^{(L)}}}
+\\ 
+\\ 
+\\ \mathbf{z}^{(L)} = \mathbf{w}^{(L)} \mathbf{h}^{(L)} \quad \small\text{where} \quad  \mathbf{w}^{(L)} \in \mathbb{R}^{i\times j}
+$$
+<br>
+Therefore, for any given \( w_{ij}^{(L)} \in \mathbf{ w }^{(L)} \),
+<br> 
+$$
+\begin{align*}
+\frac{\partial{E}}{\partial{w_{ij}^{(L)}}} &= \sum_{i} \frac{\partial{E}}{\partial{y_{i}}} 
+\Bigg( \sum_{k} \frac{\partial{y_{i}}}{\partial{z_{k}^{(L)}}} \frac{\partial{z_{k}^{(L)}}}{\partial{w_{ij}^{(L)}}} \Bigg)
+\\ &= \sum_{i} \frac{ \partial{E} }{ \partial{y_{i}} } \frac{ \partial{y_{i}} }{ \partial{z_{j}^{(L)}} } \frac{ \partial{z_{j}^{(L)}} }{ \partial{w_{ij}^{(L)}} } \quad \tiny\texttt{True since $ 
+\frac{\partial{z_{k}^{(L)}}}{\partial{w_{ij}^{(L)}}}=0 \ \ \forall \ \ k \neq j$.}
+\\ &= h_{i}^{(L)} (y_{j}\sum_{i}t_{i} - t_{j})
+\\ &= h_{i}^{(L)}(y_{j} - t_{j}) \quad \tiny\texttt{True since $\sum_{i}t_{i} = 1$, $\mathbf{t}$ is a 'one-hot' encoded vector.}
+\end{align*}
+$$
+<br>
+In vectorized notation,
+$$
+\begin{align*}
+\nabla_{\mathbf{w}^{(L)}}E &= \mathbf{h}^{\intercal(L)}(\mathbf{y}-\mathbf{t})
+\\
+\\ &=
+    \begin{bmatrix} 
+    h_{1}^{(L)}(y_{1} - t_{1}) & h_{1}^{(L)}(y_{2} - t_{2}) & \dots \\
+    \vdots & \ddots & \\
+    h_{i}^{(L)}(y_{1} - t_{1}) & \dots      & h_{i}^{(L)}(y_{j} - t_{j}) 
+    \end{bmatrix}
+\end{align*}
+$$
+<br>
+And the derivative with respect to a previous weight matrix can be obtained as follows.
+$$
+\begin{align*}
+\frac{\partial{E}}{\partial{w_{pq}^{(L-1)}}} &= \sum_{i} \frac{\partial{E}}{\partial{y_{i}}} 
+\Bigg( \sum_{k} \frac{\partial{y_{i}}}{\partial{z_{k}^{(L)}}} \frac{\partial{z_{k}^{(L)}}}{\partial{h_{q}^{(L)}}} \frac{\partial{h_{q}^{(L)}}}{\partial{z_{q}^{(L-1)}}}
+\frac{\partial{z_{q}^{(L-1)}}}{\partial{w_{pq}^{(L-1)}}}\Bigg)
+\\
+\\&= x_{p}h_{q}^{(L)}(1-h_{q}^{(L)})\sum_{q}w_{pq}^{(L)}(y_{q}-t_{q})
+\end{align*}
+$$
+<br>
+Expressed as a a matrix, where \( h_{q}^{\prime(L)} = h_{q}^{(L)}(1 - h_{q}^{(L)}) \) and \( \delta_{q} = y_{q} - t_{q} \),
+<br>
+$$
+\begin{align*}
+\nabla_{\mathbf{w}^{(L-1)}}E &= \mathbf{x}^{\intercal} \Big( \mathbf{h}^{(L)} \circ (1 - \mathbf{h}^{(L)}) \circ \big[ (\mathbf{y} - \mathbf{t})\mathbf{w}^{\intercal(L)} \big] \Big)
+\\
+\\ &=
+    \begin{bmatrix} 
+    x_{1}h_{1}^{\prime(L)} \sum_{q}w_{1q}^{(L)}\delta_{q} & x_{1}h_{2}^{\prime(L)}\sum_{q}w_{1q}^{(L)}\delta_{q} & \dots \\
+    \vdots & \ddots & \\
+    x_{p}h_{1}^{\prime(L)}\sum_{q}w_{pq}^{(L)}\delta_{q} & \dots      & x_{p}h_{q}^{\prime(L)}\sum_{q}w_{pq}^{(L)}\delta_{q}
+    \end{bmatrix}
+\end{align*}
+
+$$
+</div>
+
+
+ <div id="st">
+&ensp;Baselines
+ </div>
+
+ <div id="p">
+Baslines help reduce variance.
+ </div>
+
+  <div id="st">
+&ensp;Code
+ </div>
+
+ <div id="p" style="margin-bottom:0px;">
+Only two libraries will be used, numpy for the math and OpenAI's gym for the environment.
+ </div>
+
+ <pre>
+  <code class="python">
+   import numpy as np
+   import gym
+
+   env = gym.make("MountainCar-v0")
+  </code>
+ </pre>
+
+</body>
+</html>
