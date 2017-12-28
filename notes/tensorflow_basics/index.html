@@ -50,8 +50,7 @@ Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</
  <div id="p">
 Computational graphs behave like an assembly process. Given that dependencies among nodes can be tracked, the computation process can be decomposed into several subprocesses for which computational resources can be allocated according to different needs. This is what allows a graph-based computation system to be distributed among different machines.
 <br><br>
-Furthermore, graphs are extremely flexible when it comes to building quantitative models from linear regression to the most sophisticated neural
-networks architechtures. So, the reason why computational graphs are interesing, not to mention useful, is that both scalability and flexibility can build any kind of application no matter how simple or complex; hence, Tensorflow is worth exploring in depth.
+Furthermore, graphs are extremely flexible when it comes to building quantitative models as simple as linear regression or as sophisticated as some neural networks architechtures. So, the reason why computational graphs are interesing, not to mention useful, is that both scalability and flexibility can build any kind of application no matter how simple or complex; hence, Tensorflow is worth exploring in depth.
  </div>
 
  <div id='st'>
@@ -72,7 +71,7 @@ There is a Tensorflow API in Python which is great for data science projects. Th
    C = tf.constant(1)
 
    #  == Second layer ==
-   D = tf.add(A,B)             #   Same as A + B syntactically,
+   D = tf.add(A,B)             #   Same as A + B semantically,
    E = tf.subtract(B,C)        #    ...    B - C ...
 
    #  == Target node ==
@@ -86,7 +85,7 @@ There is a Tensorflow API in Python which is great for data science projects. Th
  </pre>
 
  <div id='p'>
-Apart from the last three lines from the previous block, the entire code is self-explanatory. Regarding the last three lines, what these indicate is that a <i><b>session</b></i> is required for executing a computional and its output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";font-weight:500;'>output</span>. After the computation is done, the session should be closed to free computational resources.
+Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <i><b>session</b></i> is required for executing the computation and its output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";font-weight:500;'>output</span>. After the computation is done, the session should be closed to free computational resources.
  </div>
 <script src='script.js'></script>
 </body>
