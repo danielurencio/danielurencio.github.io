@@ -5,7 +5,7 @@ var svg1 = d3.select("div#i_0")
 
 var layers = {
   layers: [3,2,1],
-  x_space: 100,
+  x_space: 110,
   y_space: 90,
   radius: 25,
   neuronCol: "rgb(50,50,50)"
