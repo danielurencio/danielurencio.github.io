@@ -85,7 +85,7 @@ There is a Tensorflow API in Python which is great for data science projects. Th
  </pre>
 
  <div id='p'>
-Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <i><b>session</b></i> is required for executing the computation and its output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";font-weight:500;'>output</span>. After the computation is done, the session should be closed to free computational resources.
+Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <i><b>session</b></i>, through the <span style='font-family:monospace;'>tf.Session()</span> command, is required. Sessions are the contexts where the computation and calculations are preformed; in the above example, the output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";'>output</span>. After the computation is done, the session should be closed to free computational resources.
  </div>
 
  <div id='st'>
@@ -93,7 +93,8 @@ Apart from the last three lines from the previous block, the entire code is self
  </div>
 
  <div id='p' style='margin-bottom:10px;'>
- <span style='font-weight:700'>Graphs</span><br>
+ <span style='font-weight:700'>Graphs</span>
+ <br>
 By default Tensorflow creates a graph. This default graph is the one that is used when declaring nodes and computing its values; however, other graphs can be explicitly declared.
  </div>
  
@@ -103,6 +104,28 @@ By default Tensorflow creates a graph. This default graph is the one that is use
   </code>
  </pre>
 
+ <div id='p' style='margin-bottom:10px;'>
+ <span style='font-weight:700;'>Interactive session</span>
+  <br>
+  Besides the conventional sessions, Tensorflows has a very useful command for evaluating the content of variables and placeholders (which will be discussed shortly).
+ </div>
+
+ <pre>
+  <code class="python">
+   sess_ = tf.InteractiveSession()
+
+   x = tf.constant([[1,2],
+		    [3,4]])
+
+   x.eval() 	# <-- Evaluates and prints what is stored in 'x'.
+
+   sess_.close()
+  </code>
+ </pre>
+
+ <div id='p'>
+Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be feed to a graph.
+ </div>
 <script src='script.js'></script>
 </body>
 </html>
