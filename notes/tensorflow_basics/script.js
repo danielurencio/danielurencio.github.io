@@ -31,9 +31,9 @@ var labels_0 = ["A = 3","B = 2","C = 1","D = 5","E = 1","F = 5"];
 var labels_1 = ["constant","constant","constant","summation","subtraction","multiplication"];
 
 for(var i=0; i<circles_0.length; i++) {
-  var cx = +d3.select(circles_0[i]).attr("cx")
+  var cx = +d3.select(circles_0[i]).attr("cx");
 
-  var cy = d3.select(circles_0[i]).attr("cy")
+  var cy = d3.select(circles_0[i]).attr("cy");
 
   var offset_y = d3.select(circles_0[i].parentNode)
 		.attr("transform")
