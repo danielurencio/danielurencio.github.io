@@ -1,7 +1,7 @@
 var svg1 = d3.select("div#i_0")
- .append("svg")//.append("g")
+ .append("svg")
   .attr("width","550px")
-  .attr("height","310px")//.append("g")
+  .attr("height","310px");
 
 var layers = {
   layers: [3,2,1],
@@ -22,7 +22,6 @@ for(var i=0; i<linesDel.length; i++) {
 }
 
 d3.selectAll(".del").remove();
-//d3.select("#i_0 circle#n_1.l_1").remove();
 
 var circles_0 = d3.selectAll("#i_0 circle")[0];
 var offset_x = +d3.select("#i_0 svg>g").attr("transform")
@@ -47,6 +46,7 @@ for(var i=0; i<circles_0.length; i++) {
 	.attr("text-anchor","middle")
 	.attr("font-family","Roboto")
         .attr("font-weight","700")
+	.attr("font-size","14px")
 	.text(labels_0[i]);
 
   d3.select("#i_0 svg").append("text")
