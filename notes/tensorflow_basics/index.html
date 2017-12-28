@@ -87,6 +87,22 @@ There is a Tensorflow API in Python which is great for data science projects. Th
  <div id='p'>
 Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <i><b>session</b></i> is required for executing the computation and its output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";font-weight:500;'>output</span>. After the computation is done, the session should be closed to free computational resources.
  </div>
+
+ <div id='st'>
+&ensp;Graphs, sessions and the <span style='font-family:monospace;'>with</span> command
+ </div>
+
+ <div id='p' style='margin-bottom:10px;'>
+ <span style='font-weight:700'>Graphs</span><br>
+By default Tensorflow creates a graph. This default graph is the one that is used when declaring nodes and computing its values; however, other graphs can be explicitly declared.
+ </div>
+ 
+ <pre>
+  <code class="python">
+   new_graph = tf.Graph()
+  </code>
+ </pre>
+
 <script src='script.js'></script>
 </body>
 </html>
