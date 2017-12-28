@@ -74,15 +74,15 @@ There is a Tensorflow API in Python which is great for data science projects.
    C = tf.constant(1)
 
    # == Second layer ==
-   D = tf.add(A,B)
-   E = tf.subtract(B,C)
+   D = tf.add(A,B)             # Same as A + B syntactically,
+   E = tf.subtract(B,C)        #  ...    B - C ...
 
    # == Target node ==
-   F = tf.multiply(D,E)
+   F = tf.multiply(D,E)        #  ...    D * E ...
 
    # == Intitialize session, execute it and close it ==
    sess = tf.Session()
-   outs = sess.run(F)
+   output = sess.run(F)
    sess.close()
 
   </code>
