@@ -39,9 +39,9 @@ As the title of these notes suggest, the main concepts and utilities of this lib
  <div id="p">
 A graph, in the mathematical sense, is a set of elements that may or may not keep some sort of relationship. It is like a network where the elements are represented by nodes and the relationship between them are represented by vertices. In Tensorflow, nodes are mathematical operations and vertices signal the direction the data flows towards.
 <br><br>
-In the example from above information flows from left to right. The outer left nodes represent placeholders for data that will undergo certain mathematical operations; nodes <b>A</b>, <b>B</b> and <b>C</b> hold a constant value of <b>3</b>, <b>2</b> and <b>1</b> respectively. Node <b>D</b> performs a sum operation and depends on the values of <b>A</b> and <b>B</b> to compute a quantity of <b>5</b>. Similarly, <b>E</b> has dependence on <b>B</b> and <b>C</b> to compute a value of <b>1</b> through substraction.
+In the example from above information flows from left to right. The outer left nodes represent placeholders for data that will undergo certain mathematical operations; nodes <b>A</b>, <b>B</b> and <b>C</b> hold a constant value of <b>3</b>, <b>2</b> and <b>1</b> respectively. Node <b>D</b> performs a sum operation and depends on the values of <b>A</b> and <b>B</b> to compute a quantity of <b>5</b> (<b>D = A + B</b>). Similarly, <b>E</b> has dependence on <b>B</b> and <b>C</b> to compute a value of <b>1</b> through substraction (<b>E = B - C</b>).
 <br><br>
-Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</b> through a multiplication operation that has direct dependency on nodes <b>D</b> and <b>E</b>. However, this last node indirectly depends on the values or operations that exist before its immediate neighbour nodes (<b>A</b>, <b>B</b> and <b>C</b>).
+Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</b> (<b>F = D * E</b>) through a multiplication operation that has direct dependency on nodes <b>D</b> and <b>E</b>. However, this last node indirectly depends on the values or operations that exist before its immediate neighbour nodes (<b>A</b>, <b>B</b> and <b>C</b>).
  </div>
 
  <div id="st">
@@ -67,6 +67,24 @@ There is a Tensorflow API in Python which is great for data science projects.
  <pre>
   <code class="python">
    import tensorflow as tf
+
+   # == First layer ==
+   A = tf.constant(3)
+   B = tf.constant(2)
+   C = tf.constant(1)
+
+   # == Second layer ==
+   D = tf.add(A,B)
+   E = tf.subtract(B,C)
+
+   # == Target node ==
+   F = tf.multiply(D,E)
+
+   # == Intitialize session, execute it and close it ==
+   sess = tf.Session()
+   outs = sess.run(F)
+   sess.close()
+
   </code>
  </pre>
 
