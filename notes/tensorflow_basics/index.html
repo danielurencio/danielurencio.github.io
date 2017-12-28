@@ -13,8 +13,7 @@
 <script src='../../plotGraphs.js'></script>
 </head>
 
-<body>
-
+<body style='color:rgb(50,50,50);'>
  <div id="t">
 &ensp;Tensorflow Basics
  </div>
@@ -45,7 +44,7 @@ Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</
  </div>
 
  <div id="st">
-But, why computational graphs?
+&ensp;But, why computational graphs?
  </div>
 
  <div id="p">
@@ -56,38 +55,39 @@ networks architechtures. So, the reason why computational graphs are interesing,
  </div>
 
  <div id='st'>
-A bit of code to exemplify
+&ensp;A bit of code to exemplify
  </div>
 
  <div id='p' style='margin-bottom:10px;'>
-There is a Tensorflow API in Python which is great for data science projects. 
+There is a Tensorflow API in Python which is great for data science projects. The code for computing the graph plotted above is as simple as what follows.
  </div>
-
 
  <pre>
   <code class="python">
    import tensorflow as tf
 
-   # == First layer ==
+   #  == First layer ==
    A = tf.constant(3)
    B = tf.constant(2)
    C = tf.constant(1)
 
-   # == Second layer ==
-   D = tf.add(A,B)             # Same as A + B syntactically,
-   E = tf.subtract(B,C)        #  ...    B - C ...
+   #  == Second layer ==
+   D = tf.add(A,B)             #   Same as A + B syntactically,
+   E = tf.subtract(B,C)        #    ...    B - C ...
 
-   # == Target node ==
-   F = tf.multiply(D,E)        #  ...    D * E ...
+   #  == Target node ==
+   F = tf.multiply(D,E)        #    ...    D * E ...
 
-   # == Intitialize session, execute it and close it ==
+   #  == Intitialize session, execute it and close it ==
    sess = tf.Session()
    output = sess.run(F)
    sess.close()
-
   </code>
  </pre>
 
+ <div id='p'>
+Apart from the last three lines from the previous block, the entire code is self-explanatory. Regarding the last three lines, what these indicate is that a <i><b>session</b></i> is required for executing a computional and its output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";font-weight:500;'>output</span>. After the computation is done, the session should be closed to free computational resources.
+ </div>
 <script src='script.js'></script>
 </body>
 </html>
