@@ -137,13 +137,15 @@ In order to initialize a context in which both graphs and sessions can be declar
      y = tf.constant(1)
      z = x + y
 
-     with tf.Session as sess:
+     with tf.Session() as sess:
        sess.run(z)
   </code>
  </pre>
 
  <div id='p'>
-What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do. By using this command diffrent graphs within different sessions can be used independently.
+What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do.
+<br><br>
+By using this command diffrent graphs within different sessions can be used independently. Note that, when declaring a new <span style="font-family:monospace;">tf.Graph()</span>, it has to be called along git the <span style='font-family:monospace;'>as_default</span> method so that Tensorflow knows that this is the current graph context to use.
  </div>
 <script src='script.js'></script>
 </body>
