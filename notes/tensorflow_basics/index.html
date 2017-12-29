@@ -123,7 +123,7 @@ By default Tensorflow creates a graph. This default graph is the one that is use
   </code>
  </pre>
 
- <div id='p'>
+ <div id='p' style='margin-bottom:10px;'>
 Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be fed to a graph.
 <br><br>
 <span style='font-weight:700;'>The <span style='font-family:monospace;'>with</span> command</span><br>
@@ -143,9 +143,45 @@ In order to initialize a context in which both graphs and sessions can be declar
  </pre>
 
  <div id='p'>
-What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do.
+What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do. Also, <span style='font-family:monospace;'>with</span> automatically closes the session which immediately releases computational resources.
+ 
 <br><br>
 By using this command diffrent graphs within different sessions can be used independently. Note that, when declaring a new <span style="font-family:monospace;">tf.Graph()</span>, it has to be called along git the <span style='font-family:monospace;'>as_default</span> method so that Tensorflow knows that this is the current graph context to use.
+ </div>
+
+ <div id='st'>
+&ensp;Numpy compatibility
+ </div>
+
+ <div id='p' style='margin-bottom:10px;'>
+Using Numpy along with Tensorflow makes certain mathematical tasks very easy. One example of this is matrix multiplication; Numpy creates matrices for Tensorflow and the latter does not have to worry about vector shapes.
+ </div>
+
+ <pre>
+  <code class='python'>
+  import tensorflow as tf
+  import numpy as np
+
+   with tf.Graph().as_default():
+     a = np.random.random((1,3))
+     b = np.random.random((3,1))
+     c = tf.matmul(a,b)
+
+     with tf.Session() as sess:
+       sess.run(c)
+  <code>
+ </pre>
+
+ <div id='p'>
+According to the previos multiplication, Tensorflow will return a <b>1 x 1</b> matrix as a Numpy array.
+ </div>
+
+ <div id='st'>
+&ensp;Variables and Placeholders for Optimization
+ </div>
+
+ <div id='p'>
+Most machine learning models reduce to an optimization problems where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some fixed parameters; therefore, the optimization becomes possible as some other variable parameters indeed vary, and this change is what reduces the magnitud of the cost function.
  </div>
 <script src='script.js'></script>
 </body>
