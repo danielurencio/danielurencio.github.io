@@ -29,18 +29,18 @@ As the title of these notes suggest, the main concepts and utilities of this lib
  </div>
 
  <div id="p">
- The hay Tensorflow works is based on computing things through graphs. What does this mean exactly? A graph, perhaps, might be the best way to make this idea clear.
+ The way Tensorflow works is based on computing things through graphs. What does this mean exactly? A graph, perhaps, might be the best way to make this idea clear.
  </div>
 
  <div id="i_0">
  </div>
 
  <div id="p">
-A graph, in the mathematical sense, is a set of elements that may or may not keep some sort of relationship. It is like a network where the elements are represented by nodes and the relationship between them are represented by vertices. In Tensorflow, nodes are mathematical operations and vertices signal the direction the data flows towards.
+A graph, in a mathematical sense, is a set of elements that may or may not keep some sort of relationship; it is like a network where the elements are represented by nodes and the relationship between them are represented by vertices. In Tensorflow, nodes are mathematical operations and vertices signal the direction the data flows towards.
 <br><br>
 In the example from above information flows from left to right. The outer left nodes represent placeholders for data that will undergo certain mathematical operations; nodes <b>A</b>, <b>B</b> and <b>C</b> hold a constant value of <b>3</b>, <b>2</b> and <b>1</b> respectively. Node <b>D</b> performs a sum operation and depends on the values of <b>A</b> and <b>B</b> to compute a quantity of <b>5</b> (<b>D = A + B</b>). Similarly, <b>E</b> has dependence on <b>B</b> and <b>C</b> to compute a value of <b>1</b> through substraction (<b>E = B - C</b>).
 <br><br>
-Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</b> (<b>F = D * E</b>) through a multiplication operation that has direct dependency on nodes <b>D</b> and <b>E</b>. However, this last node indirectly depends on the values or operations that exist before its immediate neighbour nodes (<b>A</b>, <b>B</b> and <b>C</b>).
+Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>5</b> (<b>F = D * E</b>) through a multiplication operation that has direct dependency on nodes <b>D</b> and <b>E</b>. However, this last node indirectly depends on the values or operations that exist before its immediate neighbour nodes (<b>A</b>, <b>B</b> and <b>C</b>).
  </div>
 
  <div id="st">
@@ -79,13 +79,13 @@ There is a Tensorflow API in Python which is great for data science projects. Th
 
    #  == Intitialize session, execute it and close it ==
    sess = tf.Session()
-   output = sess.run(F)
+   output = sess.run(F)        #   This variables stores a 5.
    sess.close()
   </code>
  </pre>
 
  <div id='p'>
-Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <b>session</b>, with the <span style='font-family:monospace;'>tf.Session()</span> command, is required. Sessions are the contexts where computations are preformed; in the above example, the output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";'>output</span>. After the computation is done, the session should be closed to free computational resources.
+Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed, a <b>session</b>, using the <span style='font-family:monospace;'>tf.Session()</span> command, has to be declared. Sessions are the contexts where computations are preformed; in the above example, the output obtained with node <b>F</b> is stored inside the variable named <span style='font-family:monospace;'>output</span>. After the computation is done, the session should be closed to free computational resources.
  </div>
 
  <div id='st'>
@@ -95,7 +95,7 @@ Apart from the last three lines from the previous block, the entire code is self
  <div id='p' style='margin-bottom:10px;'>
  <span style='font-weight:700'>Graphs</span>
  <br>
-By default Tensorflow creates a graph. This default graph is the one that is used when declaring nodes and computing its values; however, other graphs can be explicitly declared.
+When Tensorflow is first imported as a library, a graph is created which, by default, is what is used for any computation; this is what happens when no anticipated specification is done. However, other graphs can be explicitly declared.
  </div>
  
  <pre>
@@ -112,14 +112,14 @@ By default Tensorflow creates a graph. This default graph is the one that is use
 
  <pre>
   <code class="python">
-   sess_ = tf.InteractiveSession()
+   i_sess = tf.InteractiveSession()
 
    x = tf.constant([[1,2],
 		    [3,4]])
 
    x.eval() 	# <-- Evaluates and prints what is stored in 'x'.
 
-   sess_.close()
+   i_sess.close()
   </code>
  </pre>
 
@@ -127,7 +127,7 @@ By default Tensorflow creates a graph. This default graph is the one that is use
 Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be fed to a graph.
 <br><br>
 <span style='font-weight:700;'>The <span style='font-family:monospace;'>with</span> command</span><br>
-In order to initialize a context in which both graphs and sessions can be declared or executed, this command is very useful. Suppose a diffrent graph from the default one is to be declared in any given session, to achive this the code would look like this:
+In order to initialize contexts in which both graphs and sessions can be declared and executed, the <span style='font-family:monospace;'>with</span> command turns out to be a very handy utility. Suppose a diffrent graph from the default one is to be declared in any given session, to achive this the code would look like this:
  </div>
 
  <pre>
@@ -143,7 +143,7 @@ In order to initialize a context in which both graphs and sessions can be declar
  </pre>
 
  <div id='p'>
-What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do. Also, <span style='font-family:monospace;'>with</span> automatically closes the session which immediately releases computational resources.
+What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do. Also, another benefit is that <span style='font-family:monospace;'>with</span> automatically closes the used session to immediately release resources.
  
 <br><br>
 By using this command diffrent graphs within different sessions can be used independently. Note that, when declaring a new <span style="font-family:monospace;">tf.Graph()</span>, it has to be called along git the <span style='font-family:monospace;'>as_default</span> method so that Tensorflow knows that this is the current graph context to use.
@@ -181,7 +181,7 @@ According to the previos multiplication, Tensorflow will return a <b>1 x 1</b> m
  </div>
 
  <div id='p'>
-Most machine learning models reduce to an optimization problems where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some <b>fixed parameters</b>.
+Most machine learning models reduce to an optimization problem where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some <b>fixed parameters</b>.
 <br><br>
 The optimization becomes possible as some other <b>variable parameters</b> change, and finding a set of these latter parameters that result in a lower error function value is what the 'learning' is all about. Tensorflow has both a <b>Variable</b> and a <b>Placeholder</b> object to cache <b>variable</b> and <b>fixed</b> parameters respectively.
  </div>
