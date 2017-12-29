@@ -85,7 +85,7 @@ There is a Tensorflow API in Python which is great for data science projects. Th
  </pre>
 
  <div id='p'>
-Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <i><b>session</b></i>, through the <span style='font-family:monospace;'>tf.Session()</span> command, is required. Sessions are the contexts where the computation and calculations are preformed; in the above example, the output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";'>output</span>. After the computation is done, the session should be closed to free computational resources.
+Apart from the last three lines from the previous block, the entire code is self-explanatory. Once the graph has been constructed a <b>session</b>, with the <span style='font-family:monospace;'>tf.Session()</span> command, is required. Sessions are the contexts where computations are preformed; in the above example, the output, obtained with node <b>F</b>, is stored inside the variable named <span style='font-family:"monospace";'>output</span>. After the computation is done, the session should be closed to free computational resources.
  </div>
 
  <div id='st'>
@@ -181,7 +181,9 @@ According to the previos multiplication, Tensorflow will return a <b>1 x 1</b> m
  </div>
 
  <div id='p'>
-Most machine learning models reduce to an optimization problems where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some fixed parameters; therefore, the optimization becomes possible as some other variable parameters indeed vary, and this change is what reduces the magnitud of the cost function.
+Most machine learning models reduce to an optimization problems where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some <b>fixed parameters</b>.
+<br><br>
+The optimization becomes possible as some other <b>variable parameters</b> change, and finding a set of these latter parameters that result in a lower error function value is what the 'learning' is all about. Tensorflow has both a <b>Variable</b> and a <b>Placeholder</b> object to cache <b>variable</b> and <b>fixed</b> parameters respectively.
  </div>
 <script src='script.js'></script>
 </body>
