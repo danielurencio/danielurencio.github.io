@@ -50,7 +50,7 @@ Finally, as this graph's ultimate goal, node <b>F</b> computes a value of <b>1</
  <div id="p">
 Computational graphs behave like an assembly process. Given that dependencies among nodes can be tracked, the computation process can be decomposed into several subprocesses for which computational resources can be allocated according to different needs. This is what allows a graph-based computation system to be distributed among different machines.
 <br><br>
-Furthermore, graphs are extremely flexible when it comes to building quantitative models as simple as linear regression or as sophisticated as some neural networks architechtures. So, the reason why computational graphs are interesing, not to mention useful, is that both scalability and flexibility can build any kind of application no matter how simple or complex; hence, Tensorflow is worth exploring in depth.
+Furthermore, graphs are extremely flexible when it comes to building quantitative models as simple as linear regression or as sophisticated as some neural networks architectures. So, the reason why computational graphs are interesing, not to mention useful, is that both scalability and flexibility can build any kind of application no matter how simple or complex; hence, Tensorflow is worth exploring in depth.
  </div>
 
  <div id='st'>
@@ -124,7 +124,26 @@ By default Tensorflow creates a graph. This default graph is the one that is use
  </pre>
 
  <div id='p'>
-Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be feed to a graph.
+Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be fed to a graph.
+<br><br>
+<span style='font-weight:700;'>The <span style='font-family:monospace;'>with</span> command</span><br>
+In order to initialize a context in which both graphs and sessions can be declared or executed, this command is very useful. Suppose a diffrent graph from the default one is to be declared in any given session, to achive this the code would look like this:
+ </div>
+
+ <pre>
+  <code class="python">
+   with tf.Graph().as_default():
+     x = tf.constant(1)
+     y = tf.constant(1)
+     z = x + y
+
+     with tf.Session as sess:
+       sess.run(z)
+  </code>
+ </pre>
+
+ <div id='p'>
+What makes the <span style='font-family:monospace;'>with</span> command useful is that it creates a scope for a graph in which certain variables are declared. Then, within that scope, another context is created for a session to be run and compute whatever the graph's architecture is suppossed to do. By using this command diffrent graphs within different sessions can be used independently.
  </div>
 <script src='script.js'></script>
 </body>
