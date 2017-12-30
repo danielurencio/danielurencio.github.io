@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<script src='../../plotGraphs.js'></script>
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src='../../plotGraphs.js'></script>
 </head>
 
 <body style='color:rgb(50,50,50);'>
@@ -169,7 +169,7 @@ Using Numpy along with Tensorflow makes certain mathematical tasks very easy. On
 
      with tf.Session() as sess:
        sess.run(c)
-  <code>
+  </code>
  </pre>
 
  <div id='p'>
@@ -180,11 +180,34 @@ According to the previos multiplication, Tensorflow will return a <b>1 x 1</b> m
 &ensp;Variables and Placeholders for Optimization
  </div>
 
- <div id='p'>
+ <div id='p' style='margin-bottom:10px;'>
 Most machine learning models reduce to an optimization problem where there is a cost or error function that evaluates how good a given model is. A model's 'learning' process happens as the error function is minimized given some <b>fixed parameters</b>.
 <br><br>
 The optimization becomes possible as some other <b>variable parameters</b> change, and finding a set of these latter parameters that result in a lower error function value is what the 'learning' is all about. Tensorflow has both a <b>Variable</b> and a <b>Placeholder</b> object to cache <b>variable</b> and <b>fixed</b> parameters respectively.
+<br><br>
+As an example, consider the case of a simple linear regression.
+$$
+f(\mathbf{x}) = \mathbf{x}^{\intercal} \mathbf{w} + \mathbf{b}
+$$
+From this equation, \( f(\mathbf{x}) \) tries to capture a functional explanation to another variable \( \mathbf{y} \) plus some random noise \( \epsilon \sim \mathcal{N}( \mu,\ \sigma^{2}) \).
+$$
+\mathbf{y} = f(\mathbf{x}) + \mathbf{\epsilon}
+$$
+
+In this case, \( \mathbf{x} \) and \( \mathbf{y} \) represent <b>fixed parameters</b> so they should be represented by <b>Placeholders</b>; \( \mathbf{w} \) and \( \mathbf{b} \), on the other hand, are <b>variable parameters</b> so <b>Variable</b> objects should be used instead.
  </div>
+
+ <pre>
+  <code class='python'>
+   x = tf.placeholder( tf.float32, shape=[None,3] )
+   y = tf.placeholder( tf.float32, shape=None )
+
+   w = tf.Variable( [[0,0,0]], dtype=tf.float32 )
+   b = tf.Variable( 0, dtype=tf.float32 )
+  </code>
+ </pre>
+
+
 <script src='script.js'></script>
 </body>
 </html>
