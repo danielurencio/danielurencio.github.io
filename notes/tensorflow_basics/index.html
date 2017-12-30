@@ -186,10 +186,13 @@ Most machine learning models reduce to an optimization problem where there is a 
 The optimization becomes possible as some other <b>variable parameters</b> change, and finding a set of these latter parameters that result in a lower error function value is what the 'learning' is all about. Tensorflow has both a <b>Variable</b> and a <b>Placeholder</b> object to cache <b>variable</b> and <b>fixed</b> parameters respectively.
 <br><br>
 As an example, consider the case of a simple linear regression.
+
 $$
 f(\mathbf{x}) = \mathbf{x}^{\intercal} \mathbf{w} + \mathbf{b}
 $$
+
 From this equation, \( f(\mathbf{x}) \) tries to capture a functional explanation to another variable \( \mathbf{y} \) plus some random noise \( \epsilon \sim \mathcal{N}( \mu,\ \sigma^{2}) \).
+
 $$
 \mathbf{y} = f(\mathbf{x}) + \mathbf{\epsilon}
 $$
@@ -207,6 +210,9 @@ In this case, \( \mathbf{x} \) and \( \mathbf{y} \) represent <b>fixed parameter
   </code>
  </pre>
 
+ <div id='p'>
+Notice that both placeholders and variables take (at least) two parameters, however, each case is different. Placeholders need to have the data type and shape specified and it is not necessary to pass the data they are going to hold when they are declared; instead, data is passed in whithin the session context when the computation is executed.
+ </div>
 
 <script src='script.js'></script>
 </body>
