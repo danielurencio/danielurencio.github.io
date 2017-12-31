@@ -255,8 +255,8 @@ A great thing about Tensorflow is that derivations and gradients are automatical
    alpha = 0.01
 
    # Tell Tensorflow the method to optimize and how (minimize).
-   optimizer = tf.trainGradientDescentOptimizer(learning_rate)
-   minimizer = optimizer.minimize(loss)
+   optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+   minimizer = optimizer.minimize(cost)
   </code>
  </pre>
 
