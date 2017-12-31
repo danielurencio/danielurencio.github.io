@@ -46,6 +46,11 @@ div {
   padding:2px;
 }
 
+#sst {
+  font-weight:700;
+  font-size:20px;
+}
+
 #p {
   font-weight:300;
   font-family: "Roboto", sans-serif;

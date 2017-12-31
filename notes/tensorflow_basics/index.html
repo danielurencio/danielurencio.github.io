@@ -93,7 +93,7 @@ Apart from the last three lines from the previous block, the entire code is self
  </div>
 
  <div id='p' style='margin-bottom:10px;'>
- <span style='font-weight:700'>Graphs</span>
+ <span id='sst'>Graphs</span>
  <br>
 When Tensorflow is first imported as a library, a graph is created which, by default, is what is used for any computation; this is what happens when no anticipated specification is done. However, other graphs can be explicitly declared.
  </div>
@@ -105,7 +105,7 @@ When Tensorflow is first imported as a library, a graph is created which, by def
  </pre>
 
  <div id='p' style='margin-bottom:10px;'>
- <span style='font-weight:700;'>Interactive session</span>
+ <span id='sst'>Interactive sessions</span>
   <br>
   Besides the conventional sessions, Tensorflows has a very useful command for evaluating the content of variables and placeholders (which will be discussed shortly).
  </div>
@@ -126,7 +126,7 @@ When Tensorflow is first imported as a library, a graph is created which, by def
  <div id='p' style='margin-bottom:10px;'>
 Interactive sessions are useful when experimenting or inspecting what kind of data types and shapes are to be fed to a graph.
 <br><br>
-<span style='font-weight:700;'>The <span style='font-family:monospace;'>with</span> command</span><br>
+<span id='sst'>The <span style='font-family:monospace;'>with</span> command</span><br>
 In order to initialize contexts in which both graphs and sessions can be declared and executed, the <span style='font-family:monospace;'>with</span> command turns out to be a very handy utility. Suppose a diffrent graph from the default one is to be declared in any given session, to achive this the code would look like this:
  </div>
 
@@ -185,7 +185,9 @@ Most machine learning models reduce to an optimization problem where there is a 
 <br><br>
 The optimization becomes possible as some other <b>variable parameters</b> change, and finding a set of these latter parameters that result in a lower error function value is what the 'learning' is all about. Tensorflow has both a <b>Variable</b> and a <b>Placeholder</b> object to cache <b>variable</b> and <b>fixed</b> parameters respectively.
 <br><br>
-As an example, consider the case of a simple linear regression.
+
+ <span id='sst'>Linear Regression Parameters</span><br>
+As an example, consider the following expression of a simple linear equation.
 
 $$
 f(\mathbf{x}) = \mathbf{x}^{\intercal} \mathbf{w} + \mathbf{b}
@@ -210,10 +212,50 @@ In this case, \( \mathbf{x} \) and \( \mathbf{y} \) represent <b>fixed parameter
   </code>
  </pre>
 
- <div id='p'>
-Notice that both placeholders and variables take (at least) two parameters, however, each case is different. Placeholders need to have the data type and shape specified and it is not necessary to pass the data they are going to hold when they are declared; instead, data is passed in whithin the session context when the computation is executed.
+ <div id='p' style='margin-bottom:10px;'>
+Notice that both placeholders and variables take (at least) two parameters, however, each case is different. Placeholders need to have the data type and shape specified and it is not necessary to pass the data they are going to hold when they are declared; instead, data is passed whithin the session context when the computation is executed. Also, when no shape is specified or when it equals <span style='font-family:monospace;'>None</span> then data of any size can be fed.
+<br><br>
+Variables, on the other hand, must have the data passed in as a parameter along with its type. As it can be seen from the code above, the shape of the data is undetermined for the rows and a size of three is specified for the columns.
+<br><br>
+Now that all the required variales have been declared, the target output
+can be defined.
  </div>
 
+ <pre>
+  <code class='python'>
+   y_hat = tf.matmul(tf.transpose(x),w) + b
+  </code>
+ </pre>
+
+ <div id='p' style='margin-bottom:10px;'>
+ <span id='sst'>Linear Regression Cost Function</span><br>
+The common metric for evaluating linear regression models is the Mean Squared Error (MSE) error function.
+
+$$
+C(\mathbf{w}) = \frac{1}{m}(\mathbf{y} - \mathbf{\hat{y}})^{2}
+$$
+
+By finding the gradient of the cost function with respect to the models parameters \( \nabla_{\mathbf{w}}C \) to perform gradient descent is how the error can be minimized. This is true since,
+
+$$
+\mathbf{w_{1}} := \mathbf{w}_{0} - \alpha \nabla_{\mathbf{w}_{0}} C(\mathbf{w_{0}}) \implies C(\mathbf{w_{0}}) \geq C(\mathbf{w_{1}})
+$$
+
+Where \( \alpha \) is the learning rate which modulates how big the update should be. By repeating the assingmnent expressed above in an iterative process a good fit for the model is eventually guaranteed.
+ </div>
+
+ <pre>
+  <code class='python'>
+   # Cost function.
+   cost = tf.reduce_mean( tf.square(y - y_hat) )
+
+   # Learning rate.
+   alpha = 0.01
+
+   optimizer = tf.trainGradientDescentOptimizer(learning_rate)
+   minimizer = optimizer.minimize(loss)
+  </code>
+ </pre>
 <script src='script.js'></script>
 </body>
 </html>
