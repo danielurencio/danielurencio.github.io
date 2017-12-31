@@ -242,6 +242,8 @@ $$
 $$
 
 Where \( \alpha \) is the learning rate which modulates how big the update should be. By repeating the assingmnent expressed above in an iterative process a good fit for the model is eventually guaranteed.
+<br><br>
+A great thing about Tensorflow is that derivations and gradients are automatically computed, the only thing that has to be defined is what kind of function should be optimized and by what method. The code for minimizing a MSE function using gradient descent can be done with the following lines.
  </div>
 
  <pre>
@@ -252,10 +254,17 @@ Where \( \alpha \) is the learning rate which modulates how big the update shoul
    # Learning rate.
    alpha = 0.01
 
+   # Tell Tensorflow the method to optimize and how (minimize).
    optimizer = tf.trainGradientDescentOptimizer(learning_rate)
    minimizer = optimizer.minimize(loss)
   </code>
  </pre>
+
+ <div id='p'>
+ <span id='sst'>A 'toy' dataset to experiment with</span><br>
+
+ </div>
+
 <script src='script.js'></script>
 </body>
 </html>
