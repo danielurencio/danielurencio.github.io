@@ -275,7 +275,7 @@ A great thing about Tensorflow is that derivations and gradients are automatical
    x_data = np.random.randn(2000,1)
    w_real = [0.7]
    b_real = -0.2
-   noise = np.random.randn(1,2000)*0.1
+   noise = np.random.randn(1,2000) * 0.3
    y_data = np.matmul(w_real,x_data.T) + b_real + noise
    
    iters = 5
@@ -283,21 +283,24 @@ A great thing about Tensorflow is that derivations and gradients are automatical
    g = tf.Graph()
    
    with g.as_default():
-     x = tf.placeholder(tf.float32,shape=[None,1])
-     y_true = tf.placeholder(tf.float32,shape=None)
-     w = tf.Variable([[0]],dtype=tf.float32,name='weights')
-     b = tf.Variable(0,dtype=tf.float32,name='bias')
-     y_pred = tf.matmul(w,tf.transpose(x)) + b
-   
-     loss = tf.reduce_mean(tf.square(y_true-y_pred))
+   # Declare variables and target calculation.
+     x = tf.placeholder(tf.float32, shape=[None,1])
+     y_true = tf.placeholder(tf.float32, shape=None)
+     w = tf.Variable([[0]], dtype=tf.float32, name='weights')
+     b = tf.Variable(0, dtype=tf.float32,name='bias')
+     y_pred = tf.matmul(w, tf.transpose(x)) + b
+  
+   # Specify loss function, learning reate ant optimization type.
+     loss = tf.reduce_mean(tf.square(y_true - y_pred))
      learning_rate = 0.5
      optimizer = tf.train.GradientDescentOptimizer(learning_rate)
      train = optimizer.minimize(loss)
    
-     # Before starting, initialize the variables.
+   # Variables have to be initialized.
      init = tf.global_variables_initializer()
    
      with tf.Session() as sess:
+   # First, run the Variables initialization.
          sess.run(init)
    
          for step in range(iters):
