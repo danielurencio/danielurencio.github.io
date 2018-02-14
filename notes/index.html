@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
- <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900');
-
- a {
-  color:black;
-  border-radius:2px;
-  text-decoration:none !important;
-  padding:2px;
- }
-
- a:hover {
-  color:white;
-  background-color:rgb(50,50,50);
- }
-
- a:visited {
-  color:black;
- }
-
- a:visited:hover {
-  color:white;
- }
-
- </style>
+  <title>Notes & Tutoriales</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../sub-style.css">
 </head>
-<body style='font-family:Roboto;margin:0px;'>
- <div style='font-weight:700;font-size:45px;border-bottom:1px solid black;border-top:1px solid black;width:auto;width:50%;margin-top:40px;text-align:right;display:table;padding-left:calc(0% - 0px);'>
- Notes & Tutorials
+<body>
+
+ <div id='left-side'>
+   <div id='left-content'>
+     Notes & Tutorials
+   </div>
  </div>
- <div style='font-size:18px;font-weight:300;width:50%;text-align:left;padding-top:20px;margin-left:50%;height:100%;background:transparent;'>
+
+ <div id='right-content'>
   <a href='policygradients'>&ensp;Policy Gradients&ensp;</a>
+    <br>
+    <span class='light'>&ensp;Notes on the maths for this increasingly popular reinforcement learning technique.</span>&ensp;
   <br><br>
+
+  <a href='softmax_nn'>&ensp;Softmax gradients for ANN&ensp;</a>
+    <br>
+    <span class='light'>&ensp;Notes on how to estimate the derivatives for a multi-layer NN for classification.</span>&ensp;
+  <br><br>
+
   <a href='tensorflow_basics'>&ensp;Tensorflow Basics&ensp;</a>
+    <br>
+    <span class='light'>&ensp;A brief tutorial on Tensorflow's key concepts for model optimization.</span>&ensp;
   <br><br>
-  <a href='https://danielurencio.github.io/pozos'>&ensp;Oil wells production trends (Spanish)&ensp;</a>
+
+  <a href='https://danielurencio.github.io/pozos'>&ensp;Oil wells production trends&ensp;</a>
+    <br>
+    <span class='light'>&ensp;A jupyter notebook with some oil production analysis (Spanish).</span>&ensp;
  </div>
+
 </body>
 </html>

@@ -129,8 +129,6 @@ def sgd_(alpha=0.001,iters=10):
   return history
 
 
-
-
 def predict(x,w):
 #  return np.around(feedforward(x,w)[0]).astype(int)
   return feedforward(x,w)[0]
