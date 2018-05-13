@@ -99,9 +99,13 @@ Yet another RNN walkthrough
   					mean=0, stddev=.01))
 
 
+
+
   # Apply linear layer to state vector
   def get_linear_layer(hidden_state):
       return tf.matmul(hidden_state, Wl) + bl
+
+
 
   # Iterate across time, apply linear layer to all RNN outputs
   all_outputs = tf.map_fn(get_linear_layer, all_hidden_states)
@@ -127,6 +131,9 @@ Yet another RNN walkthrough
   		   .reshape((-1, time_steps, element_size))
 
   test_label = mnist.test.labels[:batch_size]
+
+
+
 
   with tf.Session() as sess:
       sess.run(tf.global_variables_initializer())
