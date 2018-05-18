@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900');
+
+body {
+  font-family:Roboto;
+}
+
+p {
+  font-size:22px;
+  font-weight:300;
+  line-height:1.5;
+}
+
+div.text_cell_render>h1 {
+  font-size:80px;
+  font-weight:900;
+  border-top: 2px solid;
+  border-bottom:2px solid;
+}
+
+div#site {
+  background-color:white;
+}
+
+div#notebook-container {
+  box-shadow:none;
+}
+
+div.input_area {
+  border:none;
+}
+
+div.prompt, div.input-prompt {
+  display:none;
+}
+
+span.cm-keyword {
+  color:tomato;
+}
