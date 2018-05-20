@@ -4,7 +4,11 @@ body {
   font-family:Roboto;
 }
 
-p {
+div.text_cell_render {
+  color:rgb(50,50,50);
+}
+
+p, li {
   font-size:22px;
   font-weight:300;
   line-height:1.5;
@@ -13,8 +17,23 @@ p {
 div.text_cell_render>h1 {
   font-size:80px;
   font-weight:900;
+/*
   border-top: 2px solid;
   border-bottom:2px solid;
+*/
+}
+
+div.text_cell_render>h2 {
+  font-size:40px;
+  font-weight:800;
+}
+
+div.text_cell_render>h3 {
+  font-size:30px;
+}
+
+div.text_cell_render>h4 {
+  font-size:22px;
 }
 
 div#site {
