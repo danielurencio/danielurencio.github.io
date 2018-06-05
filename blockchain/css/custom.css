@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
+@font-face {
+  font-family: 'Helvetica Neu Bold';
+  src: url('font/Helvetica Neu Bold.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueBd';
+  src: url('font/HelveticaNeueBd.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeue BlackCond';
+  src: url('font/HelveticaNeue BlackCond.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueHv';
+  src: url('font/HelveticaNeueHv.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueIt';
+  src: url('font/HelveticaNeueIt.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeue Light';
+  src: url('font/HelveticaNeue Light.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueLt';
+  src: url('font/HelveticaNeueLt.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeue Medium';
+  src: url('font/HelveticaNeue Medium.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueMed';
+  src: url('font/HelveticaNeueMed.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeue Thin';
+  src: url('font/HelveticaNeue Thin.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('font/HelveticaNeue.ttf');
+}
+
+
+body,html,h1,p {
+  font-family:'Open Sans';
+}
