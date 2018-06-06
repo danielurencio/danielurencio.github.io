@@ -3,6 +3,9 @@ Reveal.initialize({
   height:'100%'
 });
 
+var alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
+var colors = palette('tol-rainbow',36)
+
 Reveal.addEventListener('hola',function() {
 
 	var str = '<div style="z-index:2;position:relative;width:100%" class="sha">'+
