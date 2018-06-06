@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/custom.css" id="theme">
 	<script src='js/crypto-js.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<!--Add support for earlier versions of Internet Explorer -->
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
@@ -33,10 +34,10 @@
 				<p>See <a href="http://www.htmlcheats.com">HTMLCheats.com</a><p>
 			</section>
 
-			<section data-background="" data-state='hola'>
-				<h1>Slide 3</h1>
-				<p>How does one revisit an arbitrary slide in code?</p>
-				<p>Visit internal slide<a href="#/show-a-link"> 2</a>
+			<section data-background="" data-state='hola' style='padding:0px;margin:0px;width:100%;height:100%;position:absolute;'>
+			  <div style='width:100%;height:100%;position:absolute;background-color:transparent;display:table;'>
+				  <div id='hash' style='vertical-align:middle;display:table-cell;height:200px'></div>
+			  </div>
 			</section>
 
 			</div>
