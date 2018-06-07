@@ -3,15 +3,87 @@ Reveal.initialize({
   height:'100%'
 });
 
-var alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
-var colors = palette('tol-rainbow',36)
+var alphabet = '0123456789abcdef';
+var colors = palette.listSchemes('rainbow')[0](16,.75,1)
 
-Reveal.addEventListener('hola',function() {
+//palette(['sequential'],alphabet.length,1)
 
-	var str = '<div style="z-index:2;position:relative;width:100%" class="sha">'+
-	    '<div style="width:50%">'+
+Reveal.addEventListener('sha256',function() {
+    shaBlock('hash','SHA256')
+});
+
+Reveal.addEventListener('merkleTree',function() {
+  ABfunc();
+  var arr = [
+	  { pos:'1', tx:'A -> 11 -> B' },
+	  { pos:'2', tx:'C -> 4 -> D' },
+	  { pos:'3', tx:'E -> 80 -> F' },
+	  { pos:'4', tx:'G -> 25 -> H' }
+  ];
+  for(var i in arr) {
+      shaBlock('a_'+arr[i].pos,'&#11014;')
+      shaBlock('b_'+arr[i].pos,i % 2 == 0 ? '&#11016;' : '&#11017;')
+      
+      var selInput_a = $('#a_'+arr[i].pos + ' input');
+	  selInput_a.val(arr[i].tx).trigger('input');
+
+      var selInput_b = $('#b_'+arr[i].pos + ' input');
+	  selInput_b.val(arr[i].tx).trigger('input');
+  }
+
+  d3.select('#a_1 input').on('input',function() {
+    var val = $('#a_1 input').val();
+    $('#b_1 input').val('');
+    $('#b_1 input').val(val).trigger('input')
+
+  })
+
+  d3.select('#a_2 input').on('input',function() {
+    var val = $('#a_2 input').val();
+    $('#b_2 input').val('');
+    $('#b_2 input').val(val).trigger('input')
+
+  })
+
+  d3.select('#a_3 input').on('input',function() {
+    var val = $('#a_3 input').val();
+    $('#b_3 input').val('');
+    $('#b_3 input').val(val).trigger('input')
+
+  })
+
+  d3.select('#a_4 input').on('input',function() {
+    var val = $('#a_4 input').val();
+    $('#b_4 input').val('');
+    $('#b_4 input').val(val).trigger('input')
+
+  })
+
+  
+  $('#shaBlock>div>div').css('font-size','15px')
+  $('input').css('height','25px')
+  	    .css('font-size','20px')
+
+  d3.selectAll('.a1 #shaBlock').remove()
+  d3.selectAll('.a2 input').style('display','none')
+});
+
+Reveal.addEventListener('A',ABfunc)
+Reveal.addEventListener('B',ABfunc)
+
+function ABfunc() {
+  $('.sha').remove();
+}
+
+
+function shaBlock(id,text) {
+
+
+	var str = '<div style="font-weight:800;z-index:2;position:relative;width:100%;" class="sha">'+
+		text +
+	    '<div style="width:50%;margin-left:25%">'+
 		'<input style="width:100%; height:50px;text-align:center;font-size:40px;"></input>'+
-	        '<div id="shaBlock" style="width:100%;display:table;height:100px;background:red;">'+
+	        '<div id="shaBlock" style="width:100%;display:table;height:100px;background:transparent;">'+
 	        '</div>'+
 	    '</div>'+
 	   '</div>';
@@ -20,7 +92,7 @@ Reveal.addEventListener('hola',function() {
 		    '<div id="shaString"></div>'
 		  '</div>';
 
-	$('#hash').prepend(str)
+	$('#'+ id).prepend(str)
 
 	var arr = []
 
@@ -32,16 +104,16 @@ Reveal.addEventListener('hola',function() {
 	}
 
 	arr = arr.map(function(d) {
-	  var sub_el = d.map(function(e) { return '<div style="border:1px solid white;display:table-cell;height:50px" id="'+e+'">&nbsp;</div>' }).reduce(function(a,b) { return a + b; });
+	  var sub_el = d.map(function(e) { return '<div style="border:1px solid white;display:table-cell;height:auto" id="'+e+'">&nbsp;</div>' }).reduce(function(a,b) { return a + b; });
 	  return '<div style="display:table-row;">'+sub_el+'</div>'
 	}).reduce(function(a,b){ return a + b; })
 	
 
-	$('#shaBlock').html(arr)
+	$('#'+id+' #shaBlock').html(arr)
 
 
-	$('input').on('input',function() {
-		var val = $('input').val();
+	$('#'+id+' input').on('input',function() {
+		var val = $('#'+ id +' input').val();
 		var sha = CryptoJS.SHA256(val).toString();
 		var shaArr = []
 		var i = 0;
@@ -51,7 +123,14 @@ Reveal.addEventListener('hola',function() {
 		  var temp_arr = []
 		  for(var j=0; j<substr.length; j++) {
 		      temp_arr.push(substr[j])
-		      $('#e'+ i +'_' + j).html(substr[j]);
+		      var selection = '#'+id+' #e'+ i +'_' + j;
+		      $(selection).html(substr[j]);
+		      $(selection).css('font-weight','800')
+			  	  .css('color','rgba(0,0,0,0.85)')
+		      var color = '#' + colors[alphabet.indexOf(substr[j])]
+		      d3.select(selection).transition()
+			  	  .duration(500)
+				  .style('background-color',color)
 		  }
 		  shaArr.push(temp_arr)
 		  i++
@@ -59,12 +138,4 @@ Reveal.addEventListener('hola',function() {
 
 		console.log(sha);
 	});
-
-});
-
-Reveal.addEventListener('A',ABfunc)
-Reveal.addEventListener('B',ABfunc)
-
-function ABfunc() {
-  $('.sha').remove();
 }
