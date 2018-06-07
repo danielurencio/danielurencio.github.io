@@ -21,8 +21,8 @@ Reveal.addEventListener('merkleTree',function() {
 	  { pos:'4', tx:'G -> 25 -> H' }
   ];
   for(var i in arr) {
-      shaBlock('a_'+arr[i].pos,'&#11014;')
-      shaBlock('b_'+arr[i].pos,i % 2 == 0 ? '&#11016;' : '&#11017;')
+      shaBlock('a_'+arr[i].pos,'&#11014;T'+arr[i].pos)
+      shaBlock('b_'+arr[i].pos,(i % 2 == 0 ? '&#11016;' : '&#11017;') + '<br>H'+arr[i].pos)
       
       var selInput_a = $('#a_'+arr[i].pos + ' input');
 	  selInput_a.val(arr[i].tx).trigger('input');
@@ -31,24 +31,67 @@ Reveal.addEventListener('merkleTree',function() {
 	  selInput_b.val(arr[i].tx).trigger('input');
   }
 
+  shaBlock('c_1','&#11014;H1 + H2')
+  shaBlock('c_2','&#11014;H3 + H4')
+  shaBlock('d_0','Bloque 0 &#10233;')
+  shaBlock('d_1','Bloque 1 &#10233;')
+  shaBlock('d_2','Bloque 2 &#10233;')
+
+
+  var H1H2 = $('#b_1 #shaBlock').attr('thishash') + $('#b_2 #shablock').attr('thishash')
+  $('#c_1 input').val(H1H2).trigger('input')
+  var H3H4 = $('#b_3 #shaBlock').attr('thishash') + $('#b_4 #shablock').attr('thishash')
+  $('#c_2 input').val(H3H4).trigger('input')
+  var BLOCK = $('#c_1 #shaBlock').attr('thishash') + $('#c_2 #shablock').attr('thishash')
+  $('#d_1 input').val(BLOCK).trigger('input')
+
+  $('#d_0 input').val(0).trigger('input')
+  $('#d_2 input').val($('#d_1 input').attr('thishash')).trigger('input')
+
+
   d3.select('#a_1 input').on('input',function() {
     var val = $('#a_1 input').val();
     $('#b_1 input').val('');
-    $('#b_1 input').val(val).trigger('input')
+    $('#b_1 input').val(val).trigger('input');
+    var H1H2 = $('#b_1 #shaBlock').attr('thishash') + $('#b_2 #shablock').attr('thishash')
+    $('#c_1 input').val(H1H2).trigger('input')
+    var BLOCK = $('#c_1 #shaBlock').attr('thishash') + $('#c_2 #shablock').attr('thishash')
+    $('#d_1 input').val(BLOCK).trigger('input')
+
+    $('#d_2>*').remove()
+    $('#d_2').css('background-color','rgba(255,0,0,0.5)').html('<div style="position:relative;top:150%;vertical-align:middle">!</div>')
 
   })
+
+d3.select('#d_2 input').on('input',function() {
+
+  $('#d_2 input').val($('#d_1 input').attr('thishash')).trigger('input')
+})
 
   d3.select('#a_2 input').on('input',function() {
     var val = $('#a_2 input').val();
     $('#b_2 input').val('');
     $('#b_2 input').val(val).trigger('input')
 
+    var H1H2 = $('#b_1 #shaBlock').attr('thishash') + $('#b_2 #shablock').attr('thishash')
+    $('#c_1 input').val(H1H2).trigger('input')
+
+    var BLOCK = $('#c_1 #shaBlock').attr('thishash') + $('#c_2 #shablock').attr('thishash')
+    $('#d_1 input').val(BLOCK).trigger('input')
+
   })
+
 
   d3.select('#a_3 input').on('input',function() {
     var val = $('#a_3 input').val();
     $('#b_3 input').val('');
     $('#b_3 input').val(val).trigger('input')
+
+    var H3H4 = $('#b_3 #shaBlock').attr('thishash') + $('#b_4 #shablock').attr('thishash')
+    $('#c_2 input').val(H3H4).trigger('input')
+
+    var BLOCK = $('#c_1 #shaBlock').attr('thishash') + $('#c_2 #shablock').attr('thishash')
+    $('#d_1 input').val(BLOCK).trigger('input')
 
   })
 
@@ -56,6 +99,10 @@ Reveal.addEventListener('merkleTree',function() {
     var val = $('#a_4 input').val();
     $('#b_4 input').val('');
     $('#b_4 input').val(val).trigger('input')
+    var H3H4 = $('#b_3 #shaBlock').attr('thishash') + $('#b_4 #shablock').attr('thishash')
+    $('#c_2 input').val(H3H4).trigger('input')
+    var BLOCK = $('#c_1 #shaBlock').attr('thishash') + $('#c_2 #shablock').attr('thishash')
+    $('#d_1 input').val(BLOCK).trigger('input')
 
   })
 
@@ -65,7 +112,8 @@ Reveal.addEventListener('merkleTree',function() {
   	    .css('font-size','20px')
 
   d3.selectAll('.a1 #shaBlock').remove()
-  d3.selectAll('.a2 input').style('display','none')
+  d3.selectAll('.a1 .sha').style('font-size','30px')
+  d3.selectAll('.a2 input,.a3 input,.a4 input').style('display','none')
 });
 
 Reveal.addEventListener('A',ABfunc)
@@ -88,9 +136,6 @@ function shaBlock(id,text) {
 	    '</div>'+
 	   '</div>';
 
-	var str_ = '<div>' +
-		    '<div id="shaString"></div>'
-		  '</div>';
 
 	$('#'+ id).prepend(str)
 
@@ -113,8 +158,10 @@ function shaBlock(id,text) {
 
 
 	$('#'+id+' input').on('input',function() {
+		
 		var val = $('#'+ id +' input').val();
 		var sha = CryptoJS.SHA256(val).toString();
+		$('#' + id + ' #shaBlock').attr('thisHash',sha)
 		var shaArr = []
 		var i = 0;
 
@@ -136,6 +183,32 @@ function shaBlock(id,text) {
 		  i++
 		}
 
-		console.log(sha);
 	});
+}
+
+
+function shaChange(id,input) {
+		var sha__ = CryptoJS.SHA256(input).toString();
+		$('#' + id + ' #shaBlock').attr('thisHash',sha__)
+		var shaArr = []
+		var i = 0;
+
+		while(i<8) {
+		  var substr = sha__.substring(8*i,8*(i+1))
+		  var temp_arr = []
+		  for(var j=0; j<substr.length; j++) {
+		      temp_arr.push(substr[j])
+		      var selection = '#'+id+' #e'+ i +'_' + j;
+		      $(selection).html(substr[j]);
+		      $(selection).css('font-weight','800')
+			  	  .css('color','rgba(0,0,0,0.85)')
+		      var color = '#' + colors[alphabet.indexOf(substr[j])]
+		      d3.select(selection).transition()
+			  	  .duration(500)
+				  .style('background-color',color)
+		  }
+		  shaArr.push(temp_arr)
+		  i++
+		}
+	console.log(sha__)
 }
