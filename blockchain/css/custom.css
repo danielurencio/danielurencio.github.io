@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 
 @font-face {
-  font-family: 'Helvetica Neu Bold';
+  font-family: 'HelveticaNeue Bold';
   src: url('font/Helvetica Neu Bold.ttf');
 }
 
@@ -57,7 +56,7 @@
 
 
 body,html,h1,p {
-  font-family:'Open Sans';
+  font-family:'HelveticaNeue';
 }
 
 div#slide_ {
