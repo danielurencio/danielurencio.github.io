@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="timeline2.svg">
+   sodipodi:docname="timeline5.svg">
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -301,6 +301,95 @@
          x="305.2218"
          y="50.042961" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1065">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.3148489px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.20787121"
+         x="66.199326"
+         y="205.23178"
+         id="text1069"><tspan
+           sodipodi:role="line"
+           id="tspan1067"
+           x="66.199326"
+           y="205.23178"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;stroke-width:0.20787121">2008</tspan></text>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1073">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.3148489px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.20787121"
+         x="136.91069"
+         y="206.44943"
+         id="text1077"><tspan
+           sodipodi:role="line"
+           id="tspan1075"
+           x="136.91069"
+           y="206.44943"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;stroke-width:0.20787121">2009</tspan></text>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1165">
+      <g
+         id="g1181">
+        <text
+           id="text1169"
+           y="234.10161"
+           x="75.886528"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.22143699"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.22143699"
+             y="234.10161"
+             x="75.886528"
+             id="tspan1167"
+             sodipodi:role="line">Centralizado</tspan></text>
+        <text
+           id="text1173"
+           y="244.40764"
+           x="73.948975"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.22143699"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.22143699"
+             y="244.40764"
+             x="73.948975"
+             id="tspan1171"
+             sodipodi:role="line">Desconfiable</tspan></text>
+        <g
+           transform="matrix(0.73423031,0,0,0.73423031,20.817307,55.762382)"
+           id="g1179">
+          <text
+             xml:space="preserve"
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.06362629px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.30159065"
+             x="103.50637"
+             y="270.75354"
+             id="text1177"><tspan
+               sodipodi:role="line"
+               id="tspan1175"
+               x="103.50637"
+               y="270.75354"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.30159065">Privado</tspan></text>
+        </g>
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1207">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.27104759px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.55677617"
+         x="49.840469"
+         y="249.38766"
+         id="text1211"><tspan
+           sodipodi:role="line"
+           id="tspan1209"
+           x="49.840469"
+           y="249.38766"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.55677617">!</tspan></text>
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -310,8 +399,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="514.32845"
-     inkscape:cy="382.18317"
+     inkscape:cx="513.3183"
+     inkscape:cy="422.58927"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -328,7 +417,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -337,6 +426,24 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-87)">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1071"
+       width="25.764643"
+       height="13.656606"
+       x="133.26073"
+       y="196.21353"
+       ry="1.8922497"
+       clip-path="url(#clipPath1073)" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1063"
+       width="31.537804"
+       height="9.8889723"
+       x="60.93745"
+       y="197.0412"
+       ry="1.8922497"
+       clip-path="url(#clipPath1065)" />
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.3148489px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.20787121"
@@ -349,58 +456,32 @@
          x="30.811392"
          y="170.58713"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Chilanka;-inkscape-font-specification:Chilanka;fill:#000000;fill-opacity:1;stroke-width:0.20787121">crisis financiera</tspan></text>
-    <g
-       id="g1185"
-       transform="matrix(0.785655,0,0,0.785655,27.352727,31.317039)">
-      <rect
-         transform="matrix(0.54224957,-0.55129102,0.55129102,0.54224957,-141.88276,99.954903)"
-         clip-path="url(#clipPath954)"
-         y="255.30597"
-         x="82.051743"
-         height="34.210499"
-         width="30.735994"
-         id="rect932"
-         style="fill:#008bff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1" />
-      <rect
-         ry="1.6186776"
-         y="196.60938"
-         x="34.698208"
-         height="3.2373552"
-         width="226.67636"
-         id="rect817"
-         style="fill:#008bef;fill-opacity:1;stroke:none;stroke-width:0.17577501;stroke-opacity:1" />
-      <text
-         id="text1012"
-         y="221.36273"
-         x="49.444859"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;stroke-width:0.26458332"
-           y="221.36273"
-           x="49.444859"
-           id="tspan1010"
-           sodipodi:role="line">2008</tspan></text>
-      <rect
-         transform="matrix(-0.52614206,-0.55129102,-0.53491493,0.54224957,347.78252,101.89969)"
-         clip-path="url(#clipPath954-9)"
-         y="255.30597"
-         x="82.051743"
-         height="34.210499"
-         width="30.735994"
-         id="rect932-06"
-         style="fill:#008bff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1" />
-      <text
-         id="text1012-2"
-         y="222.9126"
-         x="139.44792"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;stroke-width:0.26458332"
-           y="222.9126"
-           x="139.44792"
-           id="tspan1010-6"
-           sodipodi:role="line">2009</tspan></text>
-    </g>
+    <rect
+       style="fill:#008bff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
+       id="rect932"
+       width="30.735994"
+       height="34.210499"
+       x="82.051743"
+       y="255.30597"
+       clip-path="url(#clipPath954)"
+       transform="matrix(0.42602109,-0.43312455,0.43312455,0.42602109,-84.118173,109.84711)" />
+    <rect
+       style="fill:#008bef;fill-opacity:1;stroke:none;stroke-width:0.13809851;stroke-opacity:1"
+       id="rect817"
+       width="178.08942"
+       height="2.5434444"
+       x="54.613548"
+       y="185.78418"
+       ry="1.2717222" />
+    <rect
+       style="fill:#008bff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
+       id="rect932-06"
+       width="30.735994"
+       height="34.210499"
+       x="82.051743"
+       y="255.30597"
+       clip-path="url(#clipPath954-9)"
+       transform="matrix(-0.41336614,-0.43312455,-0.42025859,0.42602109,300.5898,111.37504)" />
     <g
        id="g1176"
        transform="matrix(0.785655,0,0,0.785655,20.700848,25.912385)">
@@ -463,72 +544,41 @@
            id="tspan819-9-7"
            sodipodi:role="line">&quot;Too big to fail (!?)&quot;</tspan></text>
     </g>
-    <rect
-       style="fill:#000000;fill-opacity:0.82777782;stroke:none;stroke-width:0.16233504;stroke-opacity:1"
-       id="rect1187"
-       width="107.93056"
-       height="41.406086"
-       x="32.187576"
-       y="221.04092"
-       ry="1.4866546" />
     <g
-       id="g1219"
-       transform="matrix(0.81198065,0,0,0.81198065,10.870497,34.922577)">
-      <text
-         id="text1194"
-         y="264.12585"
-         x="47.993721"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.42805099px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.68570125"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.68570125"
-           y="264.12585"
-           x="47.993721"
-           id="tspan1192"
-           sodipodi:role="line">!</tspan></text>
+       id="g1217">
+      <rect
+         ry="1.4866546"
+         y="221.04094"
+         x="32.187576"
+         height="41.406086"
+         width="107.93056"
+         id="rect1187-3-6"
+         style="fill:#000000;fill-opacity:0.82777782;stroke:none;stroke-width:0.16233504;stroke-opacity:1" />
+      <rect
+         clip-path="url(#clipPath1207)"
+         ry="1.4866546"
+         y="221.04094"
+         x="32.187576"
+         height="41.406086"
+         width="107.93056"
+         id="rect1187-3"
+         style="fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.16233504;stroke-opacity:1" />
+      <rect
+         clip-path="url(#clipPath1165)"
+         ry="1.4866546"
+         y="221.04092"
+         x="32.187576"
+         height="41.406086"
+         width="107.93056"
+         id="rect1187"
+         style="fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.16233504;stroke-opacity:1" />
       <ellipse
-         ry="13.13168"
-         rx="13.397862"
-         cy="254.10217"
-         cx="51.983925"
+         ry="10.66267"
+         rx="10.878805"
+         cy="241.24863"
+         cx="53.080437"
          id="path1196"
-         style="fill:none;fill-opacity:1;stroke:#ff3400;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.22143699"
-       x="75.886528"
-       y="234.10161"
-       id="text1194-5"><tspan
-         sodipodi:role="line"
-         id="tspan1192-9"
-         x="75.886528"
-         y="234.10161"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.22143699">Centralizado</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.22143699"
-       x="73.948975"
-       y="244.40764"
-       id="text1194-5-2"><tspan
-         sodipodi:role="line"
-         id="tspan1192-9-2"
-         x="73.948975"
-         y="244.40764"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.22143699">Desconfiable</tspan></text>
-    <g
-       id="g1259"
-       transform="matrix(0.73423031,0,0,0.73423031,20.817307,55.762382)">
-      <text
-         id="text1194-5-2-8"
-         y="270.75354"
-         x="103.50637"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.06362629px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ff3400;fill-opacity:1;stroke:none;stroke-width:0.30159065"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ff3400;fill-opacity:1;stroke-width:0.30159065"
-           y="270.75354"
-           x="103.50637"
-           id="tspan1192-9-2-9"
-           sodipodi:role="line">Privado</tspan></text>
+         style="fill:none;fill-opacity:1;stroke:#ff3400;stroke-width:1.21797097;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     </g>
     <rect
        style="fill:#00c5ff;fill-opacity:0.51666667;stroke:none;stroke-width:0.16233504;stroke-opacity:1"
@@ -545,43 +595,46 @@
        cy="241.01259"
        rx="10.878805"
        ry="10.662669" />
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.22143699"
-       x="153.7321"
-       y="234.28133"
-       id="text1194-5-6"><tspan
-         sodipodi:role="line"
-         id="tspan1192-9-3"
-         x="153.7321"
-         y="234.28133"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.22143699">Descentralizado</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.22143699"
-       x="153.87325"
-       y="244.17162"
-       id="text1194-5-2-2"><tspan
-         sodipodi:role="line"
-         id="tspan1192-9-2-0"
-         x="153.87325"
-         y="244.17162"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.22143699">Confiable</tspan></text>
     <g
-       id="g1259-6"
-       transform="matrix(0.73423031,0,0,0.73423031,78.291055,55.52636)"
-       style="fill:#ffffff;fill-opacity:1">
+       id="g1241">
       <text
-         id="text1194-5-2-8-1"
-         y="270.75354"
-         x="103.50637"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.06362629px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.30159065"
+         id="text1194-5-6"
+         y="234.28133"
+         x="153.7321"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.22143699"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.30159065"
-           y="270.75354"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.22143699"
+           y="234.28133"
+           x="153.7321"
+           id="tspan1192-9-3"
+           sodipodi:role="line">Descentralizado</tspan></text>
+      <text
+         id="text1194-5-2-2"
+         y="244.17162"
+         x="153.87325"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.85748005px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.22143699"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.22143699"
+           y="244.17162"
+           x="153.87325"
+           id="tspan1192-9-2-0"
+           sodipodi:role="line">Confiable</tspan></text>
+      <g
+         style="fill:#ffffff;fill-opacity:1"
+         transform="matrix(0.73423031,0,0,0.73423031,78.291055,55.52636)"
+         id="g1259-6">
+        <text
+           xml:space="preserve"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.06362629px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.30159065"
            x="103.50637"
-           id="tspan1192-9-2-9-5"
-           sodipodi:role="line">Público</tspan></text>
+           y="270.75354"
+           id="text1194-5-2-8-1"><tspan
+             sodipodi:role="line"
+             id="tspan1192-9-2-9-5"
+             x="103.50637"
+             y="270.75354"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.30159065">Público</tspan></text>
+      </g>
     </g>
     <text
        xml:space="preserve"
