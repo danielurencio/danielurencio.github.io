@@ -871,7 +871,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1437,7 +1437,8 @@
       </g>
     </g>
     <g
-       id="g4575">
+       id="g4575"
+       transform="translate(-6.3500003)">
       <g
          style="fill:#ffffff;fill-opacity:1"
          transform="matrix(2.3133683,0,0,2.3133683,-163.44452,-372.24272)"

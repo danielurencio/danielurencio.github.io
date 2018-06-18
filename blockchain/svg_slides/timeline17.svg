@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="timeline16.svg"
+   sodipodi:docname="timeline17.svg"
    inkscape:export-filename="/home/daniel/Documents/danielurencio.github.io/blockchain/svg_slides/a.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
@@ -851,9 +851,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.62270625"
-     inkscape:cx="367.41408"
-     inkscape:cy="523.13128"
+     inkscape:zoom="1.7612792"
+     inkscape:cx="635.5325"
+     inkscape:cy="310.20782"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -871,7 +871,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1579,5 +1579,51 @@
        inkscape:connector-curvature="0"
        inkscape:transform-center-x="-0.60130883"
        inkscape:transform-center-y="-3.8803672" />
+    <g
+       id="g3354"
+       transform="translate(3.7041668,-1.5875)">
+      <text
+         id="text3299-6"
+         y="195.2865"
+         x="187.63548"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.952317px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.18451981;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.18451981;stroke-opacity:1"
+           y="195.2865"
+           x="187.63548"
+           id="tspan3297-0"
+           sodipodi:role="line">b -&gt; 1 -&gt; yo</tspan></text>
+      <rect
+         ry="1.0167023"
+         y="192.7692"
+         x="185.92009"
+         height="3.5584576"
+         width="19.278734"
+         id="rect3319"
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.17061976;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3359"
+       transform="translate(12.699998,-10.583333)">
+      <text
+         id="text3299"
+         y="210.13498"
+         x="179.13188"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.952317px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.18451981"
+         xml:space="preserve"><tspan
+           style="fill:#ffffff;fill-opacity:1;stroke-width:0.18451981"
+           y="210.13498"
+           x="179.13188"
+           id="tspan3297"
+           sodipodi:role="line">a -&gt; 5 -&gt; yo</tspan></text>
+      <rect
+         ry="1.0167023"
+         y="207.63443"
+         x="176.9502"
+         height="3.5584576"
+         width="19.278734"
+         id="rect3319-2"
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.17061976;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
   </g>
 </svg>
