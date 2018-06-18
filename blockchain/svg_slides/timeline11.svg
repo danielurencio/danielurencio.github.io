@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="timeline10.svg"
+   sodipodi:docname="timeline11.svg"
    inkscape:export-filename="/home/daniel/Documents/danielurencio.github.io/blockchain/svg_slides/a.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
@@ -1236,5 +1236,34 @@
          y="177.53549"
          style="font-size:7.05555534px;line-height:0;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
          id="tspan1287">autoridad central.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="143.2964"
+       y="196.1971"
+       id="text1255-7"><tspan
+         sodipodi:role="line"
+         id="tspan1253-5"
+         x="143.2964"
+         y="196.1971"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Dinero electrónico: </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:0.80000001;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="143.25386"
+       y="207.55571"
+       id="text1281-3"><tspan
+         sodipodi:role="line"
+         x="143.25386"
+         y="207.55571"
+         style="font-size:7.05555534px;line-height:0;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan1287-6">El problema del doble gasto no ha sido posible</tspan><tspan
+         sodipodi:role="line"
+         x="143.25386"
+         y="216.02237"
+         style="font-size:7.05555534px;line-height:0;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan1330">sin un tercero <tspan
+   style="font-weight:normal;-inkscape-font-specification:HelveticaNeue;font-family:HelveticaNeue;font-style:normal;font-stretch:normal;font-variant:normal"
+   id="tspan1852">confiable</tspan>.</tspan></text>
   </g>
 </svg>
