@@ -512,9 +512,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4908249"
-     inkscape:cx="747.33659"
-     inkscape:cy="353.90674"
+     inkscape:zoom="0.88063959"
+     inkscape:cx="697.22041"
+     inkscape:cy="576.08465"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -546,19 +546,8 @@
        id="rect1077"
        width="297"
        height="210"
-       x="-21.457081"
-       y="56.726414" />
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.28611374px;line-height:1.25;font-family:HelveticaNeue;-inkscape-font-specification:'HelveticaNeue Italic';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:0.90196078;stroke:none;stroke-width:0.51788211"
-       x="208.61172"
-       y="205.6823"
-       id="text21034-7"><tspan
-         sodipodi:role="line"
-         id="tspan21032-5"
-         x="208.61172"
-         y="205.6823"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:HelveticaNeue;-inkscape-font-specification:HelveticaNeue;fill:#ffffff;fill-opacity:0.90196078;stroke-width:0.51788211">2018</tspan></text>
+       x="0"
+       y="87" />
     <image
        y="199.76472"
        x="208.94806"
