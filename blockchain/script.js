@@ -31,8 +31,8 @@ Reveal.addEventListener('merkleTree',function() {
 	  selInput_b.val(arr[i].tx).trigger('input');
   }
 
-  shaBlock('c_1','&#11014;H1 + H2')
-  shaBlock('c_2','&#11014;H3 + H4')
+  shaBlock('c_1','H1 + H2&#11016;')
+  shaBlock('c_2','&#11017;H3 + H4')
   shaBlock('d_0','Bloque 0 &#10233;')
   shaBlock('d_1','Bloque 1 &#10233;')
   shaBlock('d_2','Bloque 2 &#10233;')
