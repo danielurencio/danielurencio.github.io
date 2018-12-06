@@ -8,6 +8,7 @@ arr.forEach(function(d) {
 $('#Clip-Challenge').css('font-size','45px');
 
 $('.prompt').html('');
+$('.prompt').css('display','none');
 
 $('p,li').css('font-family','Lato')
       	.css('font-size','20px')
@@ -23,4 +24,4 @@ Array.prototype.slice.call(document.querySelectorAll('span'))
 		$(d).parent().css('display','none');
 	});
 
-$('.container').css('box-shadow','none')
+$('.container').css('box-shadow','none');
