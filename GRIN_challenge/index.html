@@ -12001,7 +12001,7 @@ $$</p>
 <p><br><br>
 entonces,</p>
 <p>$$
-\mathbf{P}(|X-Y| &gt; 15) \leq \frac{26}{225}
+\mathbf{P}(|X-Y| &gt; 15) \leq 0.116
 $$</p>
 
 </div>
@@ -12031,7 +12031,13 @@ $$</p>
 
 </div>
 </div>
-</div># Tablular data handling
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code># Tablular data handling
 import pandas as pd
 
 # Database connection credentials
@@ -12049,7 +12055,11 @@ from sklearn.cluster import KMeans
 # Miscellaneous
 import os
 import math
-import json
+import json</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -12057,7 +12067,13 @@ import json
 <h3 id="A)-Connect-to-the-database-using-your-favorite-programming-tool">A) Connect to the database using your favorite programming tool<a class="anchor-link" href="#A)-Connect-to-the-database-using-your-favorite-programming-tool">&#182;</a></h3>
 </div>
 </div>
-</div># Connection string
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code># Connection string
 conn_str = 'postgresql://' + c.usr + ':' + c.psw + '@' + c.host + '/' + c.db
 
 # Create connection
@@ -12076,7 +12092,11 @@ tables = \
 '''
 
 # Fetch the information
-tables = pd.read_sql(tables,conn)
+tables = pd.read_sql(tables,conn)</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -12911,7 +12931,7 @@ For i in K:
   </div>
 </body>
 
- 
-<script src='script.js'></script>
+<script src='script.js'></script> 
+
 
 </html>
