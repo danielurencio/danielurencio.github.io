@@ -11800,23 +11800,44 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Imagina que GRIN está por priorizar abrir operaciones en una ciudad nueva, por ejemplo Bogota vs Santiago o Sao Paolo vs CDMX. Debes determinar cuál ciudad priorizar de un para de ciudades candidatas, y determinar cuántos patines dejar. No cuentas con datos internos para tomar la decisión y debes estructurar un proyecto que abarque los siguientes puntos.</p>
-<ol>
-<li>¿Qué datos externos utilizarías para tomar la decisión?</li>
-<li><p>Escribe un párrafo en el que expliques claramente al CEO:</p>
+<p><strong>1. ¿Qué datos externos utilizarías para tomar la decisión?</strong></p>
+<p>La decisión de optar por una ciudad en vez de otra debe de tomar en consideración la conjunción de varios aspectos. Para poder proporcionar un diagnóstico claro, confiable y reproducible construiría un indicador global que se dotara a su vez de varios subindicadores.</p>
+<p>En otras palabras, a través de ponderar númericamente ciertos aspectos que son benignos para el modelo de negocio de GRIN, construiría una calificación con base en la siguiente rúbrica de evaluación:</p>
+<ul>
+<li><b>Aspectos demográficos</b> ($\mathbf{D}$):
+Se refiere a la concentración, por unidad espacial (metros cuadrados), de personas que pertenece a cierto rango de edad (entre 15 y 35 años). A medida que en un determinado espacio exista un número mayor de personas aptas para manejar un scooter elétrico mayor es el número de clientes potenciales para la compañía.</li>
+</ul>
+<ul>
+<li><b>Diversidad económica</b> ($\mathbf{E}$):
+Es la concentración de negocios y establecimientos por unidad espacial ponderada por cuán diversa es la zona analizada (la diversidad puede calcularse con métricas como la entropía de un conjunto de datos la cual puede interpretarse como una especia de varianza para datos discretos). Las zonas económicas que se caracterizan por ser densas y diversas no sólo se asocian con una mayor actividad económica sino con la predisposición de las personas a desplazarse de un lugar a otro.</li>
+</ul>
+<ul>
+<li><b>Seguridad</b> ($\mathbf{S}$):
+Este indicador consideraría el número de delitos violentos por cada 100 mil habitantes así como el promedio mensual de accidentes automovilísticos.</li>
+</ul>
+<ul>
+<li><b>Índices de marginación o rezago social</b> ($\mathbf{M}$):
+Existen ciertas convenciones para determinar qué tan desarrollada es una región urbana. Algunos ejemplos son la línea de bienestar o los índices de marginación urbana; este tipo de indicadores son, a su vez, una ponderación de varios aspectos sociales como nivel de escolaridad, acceso a servicios básicos y situación laboral.</li>
+</ul>
+<ul>
+<li><b>Infraestractura en transporte alternativo</b> ($\mathbf{I}$):
+Una ciudad con una cantidad considerable en caminos como ciclovías y accesos peatonales puede generar mayores incentivos para que los usuarios de la aplicación utilicen los scooters recurrentemente. Este indicador puede construirse obteniendo la relación entre kilómetros cuadrados de espacios para el transporte alternativo y la superficie total de la ciudad analizada.</li>
+</ul>
+<p>Una vez que se cuente con todos los datos para ambas ciudades puede procederse en el cálculo del $\mathbf{D}\mathbf{E}\mathbf{S}\mathbf{M}\mathbf{I}$ el cual consiste en generar una calificación global por ciudad construida a partir de la ponderación de los aspectos demográficos, económicos, de seguiridad, marginación e infraestructura.</p>
+<p>$$
+Calificación\ global = \mathbf{D} + \mathbf{E} + \mathbf{S} + \mathbf{M} + \mathbf{I}  
+$$</p>
+<p>La fuente de estos datos serían los censos económicos y demográficos que levantan las oficinas de estádistica de cada país, así como los repositorios de capas vectoriales para obtener las localizaciones de unidades económicas así como la extensión de las vías de comunicación (caminos y vías).</p>
+<p>La búsqueda de datos consistiría en encontrar en el país en cuestión los equivalentes a instituciones como INEGI, CONAPO, y CONEVAL para así extraer, transformar y cargar la información en un esquema de bases de datos relacionales.</p>
+<p><strong>2. Escribe un párrafo en el que expliques claramente al CEO:</strong></p>
 <ul>
 <li>La plataforma o lenguaje de programación que utilizarás para desarrollar un modelo que ayude a decidir qué zona de la ciudad tendrá  más impacto.</li>
-<li><p>Cómo determinarás cuántos patines dejar en ciertas localizaciones y dónde deben estar esas localizaciones.</p>
-<p>Nota: no es necesaio que programes nada, pero sí que comuniques tus ideas de forma concisa para un tomador de decisiones que puede o no tener un background técnico.</p>
-</li>
+<li>Cómo determinarás cuántos patines dejar en ciertas localizaciones y dónde deben estar esas localizaciones.</li>
 </ul>
-</li>
-<li><p>¿Cómo estructurarías un equipo de DATOS para terminar este proyecto lo antes posible?</p>
-</li>
-<li><p>Describe las fases en las que estructurar{ias los tiempos del proyecto y la duración de cada fase.</p>
-</li>
-<li><p>¿Cómo describirías el entregable final?</p>
-</li>
-</ol>
+<p>La metodología para determinar qué zona de la ciudad elegida tendrá mayor relevancia para el modelo de negocio de GRIN consiste en encontrar aquellos sitios en los que existe una mayor concetración de las condiciones que propician el uso de patines eléctricos. Para ello, se utilizará el Sistema de Información Geográfica de uso libre QGIS, con el cual se creará un mapa con la localización de establecimientos comerciales y zonas residenciales; los polígonos de incidencia delictiva y marginación urbana; así como los polígonos de zonas y vías para ciclistas y peatones. Aquellas áreas en las que se de la intersección de todos estos aspectos serán elegidas como zonas de alto impacto; y, en un inicio, se distribuirá un número de patines igual a la mitad de la población económicamente activa de cada zona de alto impacto a las afueras de cada estación de transporte colectivo.</p>
+<p><strong>3. ¿Cómo estructurarías un equipo de DATOS para terminar este proyecto lo antes posible?</strong></p>
+<p><strong>4. Describe las fases en las que estructurarías los tiempos del proyecto y la duración de cada fase.</strong></p>
+<p><strong>5. ¿Cómo describirías el entregable final?</strong></p>
 
 </div>
 </div>
@@ -11865,7 +11886,27 @@ de los patines:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<pre><code>select * from </code></pre>
+<pre><code>with scooter_info as (
+    select
+        A.*,
+        B.rider_id
+    from (
+      select date_trunc('day',created_at) as date,scooter_id as date from scooter_events
+    ) A
+    left join ( select date_trunc('day',create_at), user_id as rider_id as date from rides ) B
+    on 
+      A.date = B.date
+     and
+      A.scooter_id = B.scooter_id
+)
+select * from (
+    select
+        date,
+        count(distinct scooter_id) as used_scooters
+    from scooter_info
+    group by date
+)
+where used_scooters = 0;</code></pre>
 
 </div>
 </div>
