@@ -11802,14 +11802,14 @@ div#notebook {
 <p>Imagina que GRIN está por priorizar abrir operaciones en una ciudad nueva, por ejemplo Bogota vs Santiago o Sao Paolo vs CDMX. Debes determinar cuál ciudad priorizar de un para de ciudades candidatas, y determinar cuántos patines dejar. No cuentas con datos internos para tomar la decisión y debes estructurar un proyecto que abarque los siguientes puntos.</p>
 <p><strong>1. ¿Qué datos externos utilizarías para tomar la decisión?</strong></p>
 <p>La decisión de optar por una ciudad en vez de otra debe de tomar en consideración la conjunción de varios aspectos. Para poder proporcionar un diagnóstico claro, confiable y reproducible construiría un indicador global que se dotara a su vez de varios subindicadores.</p>
-<p>En otras palabras, a través de ponderar númericamente ciertos aspectos que son benignos para el modelo de negocio de GRIN, construiría una calificación con base en la siguiente rúbrica de evaluación:</p>
+<p>En otras palabras, a través de ponderar númericamente ciertos aspectos que son favorables para el modelo de negocio de GRIN, construiría una calificación con base en los siguientes aspectos:</p>
 <ul>
 <li><b>Aspectos demográficos</b> ($\mathbf{D}$):
-Se refiere a la concentración, por unidad espacial (metros cuadrados), de personas que pertenece a cierto rango de edad (entre 15 y 35 años). A medida que en un determinado espacio exista un número mayor de personas aptas para manejar un scooter elétrico mayor es el número de clientes potenciales para la compañía.</li>
+Se refiere a la concentración, por unidad espacial (metros cuadrados), de personas que pertenecen a cierto rango de edad (entre 15 y 35 años). A medida que en un determinado espacio exista un número mayor de personas aptas para manejar un scooter elétrico mayor es el número de clientes potenciales para la compañía.</li>
 </ul>
 <ul>
 <li><b>Diversidad económica</b> ($\mathbf{E}$):
-Es la concentración de negocios y establecimientos por unidad espacial ponderada por cuán diversa es la zona analizada (la diversidad puede calcularse con métricas como la entropía de un conjunto de datos la cual puede interpretarse como una especia de varianza para datos discretos). Las zonas económicas que se caracterizan por ser densas y diversas no sólo se asocian con una mayor actividad económica sino con la predisposición de las personas a desplazarse de un lugar a otro.</li>
+Es la concentración de negocios y establecimientos por unidad espacial ponderada por cuán diversa es la zona analizada (la diversidad puede calcularse con métricas como la entropía de un conjunto de datos la cual puede interpretarse como una especie de varianza para datos discretos). Las zonas económicas que se caracterizan por ser densas y diversas no sólo se asocian con una mayor actividad económica sino con la predisposición de las personas a desplazarse de un lugar a otro.</li>
 </ul>
 <ul>
 <li><b>Seguridad</b> ($\mathbf{S}$):
@@ -11828,16 +11828,47 @@ Una ciudad con una cantidad considerable en caminos como ciclovías y accesos pe
 Calificación\ global = \mathbf{D} + \mathbf{E} + \mathbf{S} + \mathbf{M} + \mathbf{I}  
 $$</p>
 <p>La fuente de estos datos serían los censos económicos y demográficos que levantan las oficinas de estádistica de cada país, así como los repositorios de capas vectoriales para obtener las localizaciones de unidades económicas así como la extensión de las vías de comunicación (caminos y vías).</p>
-<p>La búsqueda de datos consistiría en encontrar en el país en cuestión los equivalentes a instituciones como INEGI, CONAPO, y CONEVAL para así extraer, transformar y cargar la información en un esquema de bases de datos relacionales.</p>
+<p>La búsqueda de datos consistiría en encontrar, en el país en cuestión, las equivalencias a instituciones como INEGI, CONAPO, y CONEVAL para así extraer, transformar y cargar la información en un esquema de bases de datos relacionales.</p>
 <p><strong>2. Escribe un párrafo en el que expliques claramente al CEO:</strong></p>
 <ul>
 <li>La plataforma o lenguaje de programación que utilizarás para desarrollar un modelo que ayude a decidir qué zona de la ciudad tendrá  más impacto.</li>
 <li>Cómo determinarás cuántos patines dejar en ciertas localizaciones y dónde deben estar esas localizaciones.</li>
 </ul>
-<p>La metodología para determinar qué zona de la ciudad elegida tendrá mayor relevancia para el modelo de negocio de GRIN consiste en encontrar aquellos sitios en los que existe una mayor concetración de las condiciones que propician el uso de patines eléctricos. Para ello, se utilizará el Sistema de Información Geográfica de uso libre QGIS, con el cual se creará un mapa con la localización de establecimientos comerciales y zonas residenciales; los polígonos de incidencia delictiva y marginación urbana; así como los polígonos de zonas y vías para ciclistas y peatones. Aquellas áreas en las que se de la intersección de todos estos aspectos serán elegidas como zonas de alto impacto; y, en un inicio, se distribuirá un número de patines igual a la mitad de la población económicamente activa de cada zona de alto impacto a las afueras de cada estación de transporte colectivo.</p>
-<p><strong>3. ¿Cómo estructurarías un equipo de DATOS para terminar este proyecto lo antes posible?</strong></p>
+<p>La metodología para determinar qué zona de la ciudad elegida tendrá mayor relevancia para el modelo de negocio de GRIN consiste en encontrar aquellos sitios en los que existe una mayor concetración de las condiciones que propician el uso de patines eléctricos. Para ello, se utilizará el Sistema de Información Geográfica de uso libre QGIS con el cual se creará un mapa que contendrá: la localización de establecimientos comerciales y zonas residenciales; los polígonos de incidencia delictiva y marginación urbana; así como los polígonos de zonas y vías para ciclistas y peatones. Aquellas áreas en las que se de la intersección de todos estos aspectos serán elegidas como zonas de alto impacto. Por último, se distribuirá un número de patines igual a la mitad de la población económicamente activa de cada zona; este número será distribuido equitativamente en las inmediaciones de cada parque y estación de transporte colectivo.</p>
+<p><strong>3. ¿Cómo estructurarías un equipo de DATOS para terminar este proyecto lo antes posible?</strong>
+Un equipo de tres personas podría manejar este proyecto en un tiempo considerable. Todos deberían de tener experiencia usando lenguajes de programación intérpretes (preferentemente Python) y manejando bases de datos en SQL.</p>
+<p>Por lo menos uno de los integrantes debe de tener un conocimiento elevado en herramientas GIS y sistemas de coordenadas. Lo óptimo, en mi experiencia, es que todos tengan cierto grado de involucramiento en la totalidad del proyecto pero que cada miembro se especialice en diferentes tareas según su dominio y experiencia.</p>
+<p>En este sentido, todos los miembros del equipo deberían de conocer cómo están estrucutradas las bases de datos pero alguien en particular las administra. Asimismo, todos deberían de contribuir generando contenidos para la publicación del entregable final pero alguien es el responsable del control de versiones.</p>
+<p>Trabajar de esta manera permite que nadie sea absolutamente indispensable en caso de ausentarse; y, a la vez, fomenta la productividad, pues quien conoce mejor de cierto tema es quien tiene la oportunidad de profundizar más en él.</p>
+<p>Los roles o habilidades que, en términos generales, consideraría para este proyecto son:</p>
+<ul>
+<li>DBA / web scraper</li>
+<li>Visualizador de datos / cartógrafo</li>
+<li>API coder / back end developer</li>
+<li>Coder / statistician</li>
+</ul>
 <p><strong>4. Describe las fases en las que estructurarías los tiempos del proyecto y la duración de cada fase.</strong></p>
+<ul>
+<li><strong>Identificación de necesidades y fuentes de información (4-5 días)</strong>:
+  En principio, es necesario hacer un recuento de qué es lo que se va a medir y de qué lugar se obtendrán los insumos. Esto implica asegurarse de que la información que se vaya a obtener permita, a través de la construcción de indicadores, hacer comparaciones fidedignas entre ciudades. Asimismo, esta fase también involucra trabajar en el planteamiento metodológico que va a utilizarse para el diagnóstico; si bien, éste puede definirse desde un inicio, también puede someterse a cambios a lo largo de futuras etapas.</li>
+</ul>
+<ul>
+<li><strong>Automatización de la extracción y carga para asegurar la reproducción de procesos (4-6 días)</strong>:
+Al haber acotado qué variables e indicadores tendrán que construirse, además de haber identificado la fuente de donde se obtendrán los datos en su forma más cruda, esta etapa comprende definir el proceso, las herramientas y los lenguajes que se utilizarán para automatizar la extracción de datos. Del mismo modo, se empezaría con la creación de bases de datos y tablas relacionales que podrán empezar a ser pobladas conforme se progrese en el proceso de extracción.</li>
+</ul>
+<ul>
+<li><strong>Evaluación de resultados hasta el momento y QA (4-5 días)</strong>: En esta fase se revalúan las necesidades de información con base en la disponibilidad de datos, esto se hace para poder garantizar la comparación exhaustiva entre ciudades. Si hay aspectos que necesitan reajustarse tanto en la identificación de necesidades de información como en la automatización de la extracción y carga, éste es el momento en el que ello debe de hacerse. A la par, es posible empezar a programar un proceso que garantice que la extracción y carga se están efectuando con los estándares de calidad necesarios para que el diagnóstico pueda llevar a cabo satisfactoriamente.</li>
+</ul>
+<ul>
+<li><p><strong>Desarrollo de interfaz para análisis exploratorio (7-10 días)</strong>: Esta parte del proceso puede ponerse en marcha desde el inicio del proyecto y desarrollarse paralelamente con otras tareas. Sin embargo, esto no podrá ser completamente funcional hasta que el flujo de extracción, carga y QA estén completamente definidos. Desarrollar un tablero/dashboard permite no sólo visualizar y rastrear los avances en términos de las necesidades de información, sino que también puede ser un producto muy útil para presentar y documentar el diagnóstico a otros equipos dentro de la empresa.</p>
+<p>No es necesario hacer un desarrollo completo en términos de <i>front end</i>, para este desarrollo podrían utilizarse herramientas de uso libre como <a href="https://jupyter.org/">Jupyter</a>, <a href="https://plot.ly/products/dash/">Dash</a> o <a href="https://bokeh.pydata.org/en/latest/">Bokeh</a>. A la par, se debe de trabajar en las conexiones a las bases de datos o alguna especie de API que alimente de datos al tablero.</p>
+</li>
+</ul>
+<ul>
+<li><strong>Cálculo de indicadores, revaluación y presentación de resultados (3-4 días)</strong>: Hasta este punto se debe de contar con un flujo completamente funcional de información en términos de consultas a bases de datos y visualización interactiva a través de un tablero. Esta etapa puede involucrar algunos cambios como la manera en la que se exponen los resultados, pero el cálculo de indicadores para realizar el diagnóstico comparativo entre ciudades debería de ocurrir en automático independientemente de cualquier modificación.</li>
+</ul>
 <p><strong>5. ¿Cómo describirías el entregable final?</strong></p>
+<p>Tal y como se comentó en el punto anterior, el entregable sería una document/tablero interactivo que permitiría obtener los hallazgos del diagnóstico de manera directa e intuitiva. Asimismo, presentar el entregable final de esta manera es una forma de documentar no sólo la metodología del proyecto sino la forma en la que éste se automatizó.</p>
 
 </div>
 </div>
@@ -11931,21 +11962,13 @@ where used_scooters = 0;</code></pre>
 <li><p>$H_{1}$: la proporción de patines que se usan con el cambio de distribución es mayor.</p>
 </li>
 </ul>
-<p>Al realizar el experimento, obtienes un <em>p-value</em> de 0.032 con un nivel de significancia del 0.01 para la diferencia de proporciones y un intervalo de confianza del 99% de la forma (-0.05, 0.05).</p>
-<p>¿Cómo interpretarías los resultados del experimento y qué recomendaciones harías al equipo de distribución?
-<br><br></p>
-<div style='padding-left:35px;border-left:8px solid rgb(220,220,220);font-weight:600;'>    
-A un nivel de significancia del 5%, el experimento señala que la hipótesis nula debe de ser rechazada a favor de la hipótesis alternativa dado que,
+<p>Al realizar el experimento, obtienes un <strong>p-value</strong> de <strong>0.032</strong> con un nivel de significancia del <strong>0.01</strong> para la diferencia de proporciones y un intervalo de confianza del <strong>99%</strong> de la forma <strong>(-0.005, 0.005)</strong>.</p>
+<p><strong>¿Cómo interpretarías los resultados del experimento y qué recomendaciones harías al equipo de distribución?</strong></p>
+<p>A un nivel de significancia del 1%, el experimento señala que no existen elementos suficientes para rechazar la hipótesis nula, puesto que para una prueba de dos colas vemos que $p\_value &gt; 0.005$.</p>
+<p>En otras palabras, a un nivel de significancia del 1%, el resultado observado después del experimento no puede interpretarse como un valor extremo ya que puede ser común, hasta cierto punto, observar una proporción de patines usados como la que estuvo asociada con un $p\_value$ de 3.2%. Asimismo, el intervalo de confianza confirma esta interpretación, pues el $p\_value$ se encuentra dentro del 99% de la distribución.</p>
+<p>Si el $p\_value$ hubiese sido menor al nivel de significancia establecido <i>a priori</i>, tendríamos más elementos para rechazar la hipótesis nula y considerar que una mayor proporción de patines usados pudo haber resultado como consecuencia del cambio en la distribución.</p>
+<p>La recomendación para el equipo, según los resultados del experimento, sería no favorecer la nueva distribución pues no tenemos elementos contundentes para garantizar que esta logística resultará en una proporción mayor de patines usados.</p>
 
-<br><br>
-$$
-p\_value < 0.05
-$$
-<br><br>
-En otras palabras, el hecho de que la proporción de patines utilizados sea mayor dado que se distribuyeron en diferentes locales, difícilmente puede ser atribuido meramente a un factor de "suerte".
-
-Evidentemente, un mayor uso de patines es mejor para el negocio por lo que la recomendación para el equipo de distribución es hacer el cambio de distribución de patines la nueva norma.
-</div>
 </div>
 </div>
 </div>
@@ -12248,8 +12271,8 @@ tables = pd.read_sql(tables,conn)</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following lines will fetch all the records from the available tables. As it can be noticed, there is a conditional statment that allows for a more efficient way to handle with the data.</p>
-<p>In other words, hitting the server for all records inside each table might take some time, hence we export the information to a <code>csv</code> file after we have done some wrangling. If the <code>csv</code> file already exists we no longer need to query the server, we only need to import the file which is much faster.</p>
+<p>The following lines will fetch all the records from the available tables. As it can be noticed, there is a conditional statement that allows for a more efficient way to handle with the data.</p>
+<p>In other words, hitting the server for all records of each table might take some time, hence we export the information to a <code>csv</code> file after we have done some wrangling. If the <code>csv</code> file already exists we no longer need to query the server, we only need to import the file which ends up in a much shorter period.</p>
 
 </div>
 </div>
@@ -12455,7 +12478,7 @@ else:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C)-What-is-the-%-of-open-apps-that-had-a-ride-per-day?-What-does-metric-mean-for-the-company?">C) What is the % of open apps that had a ride per day? What does metric mean for the company?<a class="anchor-link" href="#C)-What-is-the-%-of-open-apps-that-had-a-ride-per-day?-What-does-metric-mean-for-the-company?">&#182;</a></h3><p>In order to answer these questions we will add two more columns to our table. We will truncate the <code>open_time</code> by day and call it <code>date</code>, this will allow us to group the data by day. Additionally, we will add a boolean value for those times that a user opened the app and either had a ride or not; a value of <code>1</code> represents a ride whereas a <code>0</code> means there was no ride.</p>
+<h3 id="C)-What-is-the-%-of-open-apps-that-had-a-ride-per-day?-What-does-metric-mean-for-the-company?">C) What is the % of open apps that had a ride per day? What does metric mean for the company?<a class="anchor-link" href="#C)-What-is-the-%-of-open-apps-that-had-a-ride-per-day?-What-does-metric-mean-for-the-company?">&#182;</a></h3><p>In order to answer these questions, we will add two more columns to our table. We will truncate the <code>open_time</code> by day and name this feature <code>date</code>, this will allow us to group the data by day. Additionally, we will add a boolean value for those times that a user opened the app and either had a ride or not; a value of <code>1</code> represents a ride whereas a <code>0</code> means there was no ride.</p>
 
 </div>
 </div>
@@ -12476,8 +12499,7 @@ open_rides.sort_values('date',inplace=True)</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have these additional pieces of information, as we mentioned, we can group the data by day and count the both the unique number of rides and the unique number of times that the app was opened by the user.</p>
-<p>If we plot this, we can se a very strong correlation. However, we are looking at this in absolute terms (total number of rides/app openings).</p>
+<p>Now that we have these additional pieces of information, we can group the data by day and count both the unique number of rides and the unique number of times that the app was opened by the user.</p>
 
 </div>
 </div>
@@ -12486,18 +12508,7 @@ open_rides.sort_values('date',inplace=True)</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>open_rides.groupby('date').ride_id.nunique().plot(figsize=(15,10),color='green');
-open_rides.groupby('date').id.nunique().plot(figsize=(15,10));</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we now want to look at the proportion of app openings that involved a ride per day, we can then average our daily boolean values (<code>was_ride</code> column). Given that, for any given date, we have a total number of app openings for which all or some could have ended up in a ride; an average of all our <code>0</code> and <code>1</code> per day will give us what we want.</p>
+<p>If we now want to look at the proportion of app openings that involved a ride per day, we can then average our daily boolean values (<code>was_ride</code> column). Given that, for any given date, we have a total number of app openings for which all or some could have ended up in a ride; an average of all our <code>0</code> and <code>1</code> values per day will give us what we want.</p>
 
 </div>
 </div>
@@ -12570,7 +12581,7 @@ open_rides.groupby('date').id.nunique().plot(figsize=(15,10));</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After having an daily average of app openings that ended up in a ride, if we wanted to have a single figure for the average percentage of open apps that turned into a ride we can then average all daily averages.</p>
+<p>After having a daily average of app openings that ended up in a ride, if we want to have a single figure for the average percentage of open apps that turned into a ride we can then average all daily averages.</p>
 
 </div>
 </div>
@@ -12622,7 +12633,7 @@ open_rides.groupby('date').id.nunique().plot(figsize=(15,10));</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This means that, on average, the company is able to meet 91% of the estimated demand if we use the number of app openings as a proxy for the users' willingness to ride a scooter. However, it might be more useful to look at this figure from a time-series perspective such as what the plot from above depicts.</p>
+<p>This means that, on average, the company has been able to meet 91% of the estimated demand if we interpret the number of app openings as a proxy for the users' willingness to ride a scooter. However, it might be more useful to look at this figure from a time-series perspective such as what the plot from above depicts.</p>
 
 </div>
 </div>
@@ -12675,11 +12686,11 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="INPUT:-Space-should-not-be-independent-of-time">INPUT: Space should not be independent of time<a class="anchor-link" href="#INPUT:-Space-should-not-be-independent-of-time">&#182;</a></h5><p>In this problem, what we want is to output a suggestion for locations based on what the company perceives from the demand side. At its rawest presentation, a location could be a pair of coordinates therefore a desirable output could be a set of latitud-longitud pairs.</p>
-<p>However, any kind of input could deliver such list of pairs. We could take the whole history of unmet demand and from that generate a mere list of sites. However, there would hardly be any context from such output given that costumer preferences might change, people might frequent different places, and weather conditions could put users off taking a scooter ride.</p>
-<p>Therefore, this model proposes a time-oriented solution that captures the most recent user behaviour by taking as the model's input a proxy for the unmet demand of the last <strong>n</strong> days. Concretely, the model's input should be obtained by concatenating all coordinates from the last <strong>n</strong> days app openings that did not end up as a ride. Using this approach should enable planning each day's scooter distribution agenda by fetching the latest unmet demand information.</p>
-<h5 id="OUTPUT:--Dimensionality-reduction-without-abuse">OUTPUT:  Dimensionality reduction without abuse<a class="anchor-link" href="#OUTPUT:--Dimensionality-reduction-without-abuse">&#182;</a></h5><p>Meeting demand does not necessarily requires placing a scooter on every spot where a user has opened the app, that would be a greedy and inefficient approach. Certainly, scooters could be placed in locations where users have recently looked for a ride; having to walk a couple of minutes as most is quite different from not spotting any scooters whatsoever.</p>
-<p>As an approach to output a list of suggested locations for scooters to be distributed, a summary of relevant spots could be useful. This could be achieved by using some sort of clustering algorithm, hence an extension of K-means clustering is proposed for this task.</p>
+<h5 id="INPUT:-Space-should-not-be-independent-of-time">INPUT: Space should not be independent of time<a class="anchor-link" href="#INPUT:-Space-should-not-be-independent-of-time">&#182;</a></h5><p>In this problem, what we want is to output a suggestion for locations based on what the company perceives from the demand side. At its rawest presentation, a location could be a pair of coordinates, therefore, a desirable output could be a set of latitude-longitude pairs.</p>
+<p>However, any kind of input could deliver such list of pairs. We could take the whole history of unmet demand and from that generate a mere list of sites. In that case, there would hardly be any context from such output given that customer preferences could change, people might frequent different places, and weather conditions could put users off taking a scooter ride.</p>
+<p>For these reasons, this model proposes a time-oriented solution that captures the most recent user behavior based on taking as the model's input a proxy for the unmet demand of the last <strong>n</strong> days. Concretely, the model's input should be obtained by concatenating all coordinates from the last <strong>n</strong> days containing app openings that did not end up as a ride. Using this approach should enable planning each day's scooter distribution agenda by merely fetching the latest unmet demand information.</p>
+<h5 id="OUTPUT:--Dimensionality-reduction-without-abuse">OUTPUT:  Dimensionality reduction without abuse<a class="anchor-link" href="#OUTPUT:--Dimensionality-reduction-without-abuse">&#182;</a></h5><p>Meeting demand does not necessarily require placing a scooter on every spot where a user has opened the app, that would be a greedy and inefficient approach. Certainly, scooters could be placed in locations where users have recently looked for a ride; having to walk a couple of minutes is quite different from not spotting any scooters whatsoever.</p>
+<p>As a method to output a list of suggested locations for scooters to be distributed, a generalization of relevant spots could be useful. This could be achieved by using some sort of clustering algorithm, hence an extension of K-means clustering is proposed for this task.</p>
 <h5 id="INPUT-TO-OUTPUT-MIDDLEWARE:-A-K-means-extension">INPUT-TO-OUTPUT MIDDLEWARE: A K-means extension<a class="anchor-link" href="#INPUT-TO-OUTPUT-MIDDLEWARE:-A-K-means-extension">&#182;</a></h5><p>K-means, in short, is an algorithm that:</p>
 <ol>
 <li>Is initialized by choosing a fixed number of centroids which are then randomly initialized in an n-dimensional space.</li>
@@ -12692,7 +12703,7 @@ $$</p>
 <br><br>
 One problem with this algorithm is that the number of clusters must be specified beforehand. For large datasets, such as the one contained in the <code>open_app</code> table, K-means can be computationally expensive especially if a large number of clusters are to be chosen. On the other hand, if only a few clusters are defined then we are trading efficiency in computation for efficiency in meeting demand.</p>
 <p>The proposed approach for this is to extend K-means by generating clusters recursively as well as choosing the number of clusters $K$ with a log transformation of the number of observations in each recursion step. By generating clusters recursively we mean that after an initial set of clusters has been defined subclusters will be generated for each initial cluster and this process will be repeated until there are no more subclusters left to assign. This is possible given that, at each recursion step, the number of clusters/subclusters $K$ is defined as $K = \log(n)$ where $n$ corresponds to the number of observations in each cluster/subcluster.</p>
-<p>As recursion steps develop and new subclusters are generated $n$ declines and so does $\log(n)$, hence this process is guaranted to reach a point where $K=1$ and there are no more clusters to which observations can be adhered to.</p>
+<p>As recursion steps develop and new subclusters are generated $n$ declines and so does $\log(n)$, hence this process is guaranted to reach a point where $K=1$ and there are no more clusters to which observations can be adhered to. Additionally, computing $\log(n)$ keeps the number of clusters relatively low. This promotes speed while fitting K-means on every recursion step.</p>
 <p><img src="i_0.png" alt="">
 <img src="i_1.png" alt="">
 <img src="i_2.png" alt="">
@@ -12738,7 +12749,7 @@ For i in K:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A good way to exemplify how this model could be instantiated and used is through wrapping the whole logic inside an Object-Oriented class. The object <code>findSpots</code> has several methods that allow to implement all the steps from the proposed model above.</p>
+<p>A good way to exemplify how this model could be instantiated and used is through wrapping the whole logic inside an Object-Oriented class. The object <code>findSpots</code> has several methods that allow the implementation of all the steps from the proposed model above.</p>
 
 </div>
 </div>
@@ -12878,7 +12889,7 @@ For i in K:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>moving_dates</code> method returns a list of periods. Each element of this list is also a list that has seven dates. By calling <code>periods[-1]</code>we would retrieve the last seven dates in which app oppenings occured for which no scooter rides ensued.</p>
+<p>The <code>moving_dates</code> method returns a list of periods. Each element of this list is also a list that has seven dates. By calling <code>periods[-1]</code>we would retrieve the last seven dates in which app openings occurred for which no scooter rides ensued.</p>
 
 </div>
 </div>
@@ -12897,7 +12908,7 @@ For i in K:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In order to get the the list of suggested locations the method <code>returnSites</code> should be evoked. This method takes as a single parameter a period from the <code>moving_dates</code> method.</p>
+<p>In order to get the the list of suggested locations, the method <code>returnSites</code> has to be invoked. This method takes as a single parameter a period from the <code>moving_dates</code> method.</p>
 <p>To plot the list along with the spots of unmet demand a period has to be passed to the <code>plotSites</code> method.</p>
 
 </div>
@@ -12964,6 +12975,16 @@ For i in K:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>The golden points are the proposed coordinates to place the scooters whereas the black ones are the locations where users opened the app but had no ride. As can be noticed, the golden spots are evenly scattered around the irregular shape formed by the black spots.</p>
+<p>Fewer golden points are necessary to cover the black shape, this is aligned to a strategy for meeting demand where the number of scooters will hardly be greater or equal to the number of potential customers.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="&#161;Muchas-gracias!">&#161;Muchas gracias!<a class="anchor-link" href="#&#161;Muchas-gracias!">&#182;</a></h3>
 </div>
 </div>
@@ -12972,7 +12993,7 @@ For i in K:
   </div>
 </body>
 
-<script src='script.js'></script> 
+<script src='script.js'><script> 
 
 
 </html>
