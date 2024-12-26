@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+<title>Probability Theory</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+
+ <div id="t">
+&ensp;Probability Theory
+ </div>
+
+ <div id="p">
+Probability is often used in sentences such as "the probability of getting heads from tossing a coin is 50%" or "the probability of getting a 6 after throwing a die is 1 out of 6".
+<br><br>
+Hence, we can think of probabilities as <span style='font-weight:600;'>shares of possibilities.</span> This means that out of all possible outcomes, that which is probable refers to the fraction of outcomes that are effective.
+$$
+P(something) = \frac{effective\ outcomes}{total\ outcomes}
+$$
+
+Every time we are in need of calculating a probability, a helpful method is to approach the problem by trying to answer two questions:
+<ul style='font-style:italic;'>
+  <ol>1. What is the totality of possibilities that need to be accounted for?</ol>
+  <ol>2. What is the share of effective outcomes?</ol>
+</ul>
+
+<div id="st">An example using cups of tea</div>
+
+Legend says, p-values emerged from two statisticians having a conversation about one being able to distinguish whether tea was poured in first and milk second just by tasting the drink. A test was put in place to ensure if this was actually true.
+<br><br>
+The test consisted in arranging four cups of tea from which two had tea poured in first, and the remaining had milk poured in first. This situation rises the question: what is the probability of guessing what was poured in first for all four cups?
+<br><br>
+These questions are of an unconfortable rare breed often referred to as "brain teasers". Their utility reduces to very little, and they might be brought into conversations during technical interviews or simply by annoying co-workes with an uncontrollable urge to show off. Whatever the case, how can we build some intuition in order to make the process more enjoyable?
+
+<div id="st"><span style='font-style:italic;'>Divide and Conquery:</span> Break the problem into more managable pieces</div>
+Let's bring the main question back to our attention:
+<br><br>
+<span style='font-weight:700; font-style:italic'>What is the probability of guessing (or knowing) what was poured in first in four cups, where half had milk first and the rest had tea first?</span>
+<br><br> Before sarcastically wondering "whose life are we going to save by answering this?". Let's try and focus on the information is being given to us bearing in mind that "probabilities are nothing but shares of possibilities".
+<br><br>
+Notice we are being told:
+<ul>
+  <ol>1) <span style='font-style:italic; font-weight:600;'>Eight</span> cups, or <span style='font-style:italic; font-weight:600;'>elements</span>, are arranged in a certain way</ol>
+  <br>
+  <ol>2) How are they arranged?</ol>
+  <ul>
+    <ol>2.a) <span style='font-style:italic; font-weight:600;'>Two</span> have a given property (milked has poured in first)</ol>
+    <ol>2.b) The rest have a different property (tea was first)</ol>
+  </ul>
+  <br>
+  <ol>3)<span style='font-style:italic; font-weight:600;'>The problem is fixed</span> (cups had something poured in first)</ol>
+    <ul>
+      <ol>3.a) It is in the hands of the guesser to identify what property each cup has</ol>
+      <ol>3.b) The guesser can fail, or can succeed. <span style='font-style:italic; font-weight:600;'>What are all possible ways in which failures and successes can occur?</span></ol>
+    </ul>
+</ul>
+<br>
+<span id="sst">What are the total possible outcomes?</span>
+<br>
+Given that this is some sort of "guessing game", all possibilities lie in whatever the guesser does. And given that the problem is fixed, as there is one true arrangement for the \( \mathbf{N} \) cups (where \( \mathbf{N} = 4 \)), we should consider everything that is possible as everything the guesser can say.
+<br><br>
+Let's suppose cups are fixed like this:
+<br><br>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \) \( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \) \( \binom{tea}{milk} \)</span>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<br><br>
+That is the ground truth which is: the first two cups had milk first, and the rest had tea first. This is the only one true arrangement.
+<br><br>
+Of course, the guesser could be wrong and say something like:
+<br><br>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \) \( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br><br>
+or,
+<br><br>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \) \( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br><br>
+But those only amount to only two of all possible failures, where in fact there could be five failures. And, since we know there is only one true arrangements, there is only one way in which the contester can succed. This gives us a total number of six arrangements, so now we have figured out our <span style='font-weight:600;'>total outcome space</span>.
+<br><br>
+Let's list them all out just for the sake of rigor and clarity.
+<br><br>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \) \( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \) \( \binom{tea}{milk} \)</span>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<br>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \) \( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br>
+<span style='color:salmon;'>\( \binom{tea}{milk} \) \( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \) \( \binom{milk}{tea} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \) \( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
+<span style='color:dodgerblue;'>\( \binom{milk}{tea} \)</span>
+<span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
+<br><br>
+We certainly can get to know this because we can always list all possible outcomes one by one. But what if we were dealing not with four cups with halves arranged differently, but eight? This amounts to 70 possible outcomes which might not be easy nor fun to list one by one.
+<br><br>
+Is there a shortcout to calculate this? The answer to that is yes! We can rely on <span style='font-weight:600; font-style:italic;'>combinatronics</span>, and for this particular case we can use <span style='font-weight:600; font-style:italic;'>combinations</span>.
+<br>
+
+<div id="st">Combinations</div>
+$$
+_{n}C_{k} = \binom{n}{k} = \frac{n!}{k!(n - k)!}
+$$
+ <pre>
+  <code class="python">
+  # n!
+  def factorial(n):
+      if n > 1:
+          return n * factorial(n-1)
+      else:
+          return 1
+          
+  # n! / k!*(n - k)!    
+  def combinations(n, k):
+      return factorial(n) / (factorial(k) * factorial(n - k))
+      
+      
+  # n! / (n - k)!
+  def permutations(n, k):
+      return factorial(n) / (factorial(n - k))
+  </code>
+ </pre>
+
+
+</body>
+</html>
