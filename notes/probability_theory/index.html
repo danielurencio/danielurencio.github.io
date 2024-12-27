@@ -220,9 +220,7 @@ $$
 <br>
 <div id="st">Conditional Probability</div>
 <div id="sst">Filtering on events (<code>FILTER</code> operation)</div>
-So far we have only considered, implicitly, independent events. That means that the outcome of rolling the die does not have an impact on the coin toss, nor the first coin determines the result of the second one.
-<br><br>
-However, if we phrased the two coins problem differently, where the order mattered, such as "the probability of having heads on the second toss given that the first toss ended up in heads also", we would need to account for only those cases where the first toss yielded heads.
+If we phrased the two coins problem differently, where the order mattered, such as "the probability of having heads on the second toss given that the first toss ended up in heads also", we would need to account for only those cases where the first toss yielded heads.
 <div style="text-align:center;">
 <span style="font-weight:600;">&ensp;1<sup>st</sup> sequence: &ensp;</span><br>
 <span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
@@ -243,9 +241,9 @@ However, if we phrased the two coins problem differently, where the order matter
 </div>
 <br><br>
 $$
-P(A|B) = P(B|A) \cdot P(A)
+P(A|B) = P(B \cap A) / P(A)
 \\
-P(2^{nd}H| 1^{st}H) = P(1^{st}H|2^{nd}H) \cdot P(2^{nd}H)
+P(2^{nd}H| 1^{st}H) = P(1^{st}H \cap 2^{nd}H) / P(2^{nd}H)
 $$
 <div id="st">Union probability</div>
 <div id="sst">Union of events (<code>OR</code> operator)</div>
