@@ -219,9 +219,35 @@ P\bigg(\bigcap_{i=1}^n A_i\bigg) = \prod_{i=1}^n P(A_i)
 $$
 <br>
 <div id="sst">A special note on Independence and Dependence of events</div>
-So far we have only considered, implicitly, independent events. That means that the outcome of the dice does not have an impact on the coin toss, nor the first coin determines the result of the second one.
+So far we have only considered, implicitly, independent events. That means that the outcome of rolling the die does not have an impact on the coin toss, nor the first coin determines the result of the second one.
+<br><br>
+However, if we phrased the two coins problem differently, where the order mattered, such as "the probability of having heads on the second toss given that the first toss ended up in heads also", we would need to account for only those cases where the first toss yielded heads.
+<div style="text-align:center;">
+<span style="font-weight:600;">&ensp;1<sup>st</sup> sequence: &ensp;</span><br>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<div style="border: 1px solid black; display: inline-block; padding: 5px; margin: 5px 0;">
+<span id="chosen-coin">H</span><span id="coin">T</span><br><span id="chosen-coin">H</span><span id="coin">T</span>
+</div>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<br>
+<span style="font-weight:600;">&ensp;2<sup>nd</sup> sequence: &ensp;</span><br>
+<div style="border: 1px solid black; display: inline-block; padding: 5px; margin: 5px 0;">
+<span id="chosen-coin">H</span><span id="coin">T</span><br><span id="coin">H</span><span id="chosen-coin">T</span>
+</div>
+<br>
+<span style="font-weight:600;">&ensp;3<sup>rd</sup> sequence: &ensp;</span><br>
+<span id="coin">H</span><span id="chosen-coin">T</span><br><span id="chosen-coin">H</span><span id="coin">T</span><br>
+<span style="font-weight:600;">&ensp;4<sup>th</sup> sequence: &ensp;</span><br>
+<span id="coin">H</span><span id="chosen-coin">T</span><br><span id="coin">H</span><span id="chosen-coin">T</span><br>
+</div>
+<br><br>
+$$
+P(A|B) = P(B|A) \cdot P(A)
+\\
+P(2^{nd}H| 1^{st}H) = P(1^{st}H|2^{nd}H) \cdot P(2^{nd}H)
+$$
 <div id="st">Union probability</div>
-<div id="sst">OR operator</div>
+<div id="sst">Union of events (<code>OR</code> operator)</div>
 $$
 \begin{align*}
 P(A \cup B) &= P(A) + P(B) - P(A \cap B)
