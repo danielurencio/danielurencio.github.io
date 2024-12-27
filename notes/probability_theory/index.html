@@ -2,6 +2,12 @@
 <head>
 <title>Probability Theory</title>
 <meta charset="UTF-8">
+<style>
+#coin {display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:2px solid #D1D5DB; background-image:linear-gradient(to bottom right, #F3F4F6, #FFFFFF); font-weight:bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);}
+#chosen-coin {display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:2px solid #FACC15; background-image:linear-gradient(to bottom right, #FDE047, #FDE047); font-weight:bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);}
+#die {font-weight:500; font-size:35px;}
+#chosen-die {font-weight:500; font-size:35px; color:salmon;}
+</style>
 <link rel="stylesheet" type="text/css" href="../../style.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -31,16 +37,208 @@ Every time we are in need of calculating a probability, a helpful method is to a
   <ol>1. What is the totality of possibilities that need to be accounted for?</ol>
   <ol>2. What is the share of effective outcomes?</ol>
 </ul>
+<br>
+<span id="sst">The typical "coin toss" and "die throw" examples</span>
+<br><br>
+We will normally hear that the probability of getting heads, or tails, from tossing a coin is \( \frac{1}{2} = 0.5 \). Similarly, the probability of observing a particular number after thowing a die is \( \frac{1}{6} = 0.1\overline{66} \). This follows the <span style='font-style:italic;'>"shares of possibilities"</span> logic, as there are two sides in a coin and six in a die (as long as they are fair). Therefore, getting \( \mathbf{1} \) out of \( \mathbf{N} \) is the same as considering a <span style='font-style:italic;'>effective to total outcomes ratio</span>.
+<br><br>
+Those cases, however, are the simplest we can imagine. Things can get more convoluted when we stumble upon sentences such as "the probability of getting a 3 and a 5 from a single die roll", or "the probability of getting tails and a 2 after simultaneously tossing a coin and throwing a die".
+<br><br>
+<div id="st">Joint probability</div>
+<div id="sst">Intersection of events (<code>AND</code> operator)</div>
+If we consider "the probability of getting a 3 and a 5 from a single die roll", something is immediately off. There is no way we can get two outcomes from a single die roll because these are <span style="font-style:italic; font-weight:600;">mutually exclusive events</span>.
+<br><br>
+So, we can say that:
+$$
+P(3\ AND\ 5) = P(3 \cap 5) = 0
+$$
+We could instead talk about getting 3 <span style="font-weight:600;">or</span> 5 despite them beign exclusive, because that wouldn't require them to happen at the same time. Observing either would suffice (but more on this later).
+<br><br>
+On the other hand, if we were discussing "the probability of getting tails and a 2 after simultaneously tossing a coin and throwing a die", we can define this probability as:
+$$
+\begin{align*}
+P(tails \cap 2) &= P(tails) \cdot P(2)
+\\ &= \frac{1}{2}\cdot\frac{1}{6}
+\\ &= \frac{1}{12}
+\end{align*}
+$$
+Why is this true? And, why do we have to multiply? It might seem rather arbitrary and obscure everytime we see multiplication involved when dealing with probabilities. Nonetheless, the intuition behind doing se lies once again in <span style="font-style:italic;">"considering the totality of possible events"</span>.
+<br><br>
+The following visualization might be useful to capture this intuition:
+<br><br>
+<div style="text-align:center;">
+<span style="font-weight:600;">&ensp;1: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="chosen-die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;2: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="chosen-die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;3: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="die">&#9856;</span>
+<span id="chosen-die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<span style="font-weight:600;">&ensp;4: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="die">&#9856;</span>
+<span id="chosen-die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<br>
+<span style="font-weight:600;">&ensp;5: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="chosen-die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;6: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="chosen-die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;7: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="chosen-die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;8: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="chosen-die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">&ensp;9: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="chosen-die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">10: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="chosen-die">&#9860;</span>
+<span id="die">&#9861;</span>
+<br>
+<span style="font-weight:600;">11: &ensp;</span>
+<span id="chosen-coin">H</span>
+<span id="coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="chosen-die">&#9861;</span>
+<br>
+<span style="font-weight:600;">12: &ensp;</span>
+<span id="coin">H</span>
+<span id="chosen-coin">T</span>
+<span id="die">&#9856;</span>
+<span id="die">&#9857;</span>
+<span id="die">&#9858;</span>
+<span id="die">&#9859;</span>
+<span id="die">&#9860;</span>
+<span id="chosen-die">&#9861;</span>
+<br>
+</div>
+<br><br>
+Put differently, the two outcomes from the coin have to be "combined" with the six outcomes from the die. This is known as <span style="font-weight:600;font-style:italic;">the rule of multiplication of probability</span>, which can really be though of as an <code>AND</code> operation. As we are dealing with a "rule", we can extrapolate this for any other context, say, instead of simultaneously throwing a die and tossing a coin, we might toss two coins simultaneously. The probability of observing two tails would be:
+$$
+P(tails\ AND\ tails) = P(tails \cap tails) = \frac{1}{2}\cdot\frac{1}{2} = \frac{1}{4}
+$$
+<div style="text-align:center;">
+<br>
+<span style="font-weight:600;">&ensp;1: &ensp;</span>
+<span id="chosen-coin">H</span><span id="coin">T</span>&ensp;<span id="chosen-coin">H</span><span id="coin">T</span><br>
+<span style="font-weight:600;">&ensp;2: &ensp;</span>
+<span id="chosen-coin">H</span><span id="coin">T</span>&ensp;<span id="coin">H</span><span id="chosen-coin">T</span><br>
+<span style="font-weight:600;">&ensp;3: &ensp;</span>
+<span id="coin">H</span><span id="chosen-coin">T</span>&ensp;<span id="chosen-coin">H</span><span id="coin">T</span><br>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span>
+<span style="font-weight:600;">&ensp;4: &ensp;</span>
+<span id="coin">H</span><span id="chosen-coin">T</span>&ensp;<span id="coin">H</span><span id="chosen-coin">T</span>
+<span style='color:lightgreen; font-weight:500; font-size:40px;'>&check;</span><br>
+</div>
+<br><br>
+Generally speaking, we deal with multiplication every time we are dealing with the INTERSECTION of events. That is why we can think of it as an <code>AND</code> operator. Whenever events are not mutually exclusive, we can say that the probability of intersecting events is given by:
+$$
+P(A \cap B) = P(A) \cdot P(B)
+$$
+If we care about not only two but \( \mathbf{N} \) events, we can express the same idea in the following way:
+$$
+P\bigg(\bigcap_{i=1}^n A_i\bigg) = \prod_{i=1}^n P(A_i)
+$$
+<br>
+<div id="sst">A special note on Independence and Dependence of events</div>
+So far we have only considered, implicitly, independent events. That means that the outcome of the dice does not have an impact on the coin toss, nor the first coin determines the result of the second one.
+<div id="st">Union probability</div>
+<div id="sst">OR operator</div>
+$$
+\begin{align*}
+P(A \cup B) &= P(A) + P(B) - P(A \cap B)
+\\ &= P(A) + P(B) - P(A) \cdot P(B)
+\end{align*}
+$$
 
-<div id="st">An example using cups of tea</div>
+<div id="st">A more complex example using cups of tea</div>
 
 Legend says, p-values emerged from two statisticians having a conversation about one being able to distinguish whether tea was poured in first and milk second just by tasting the drink. A test was put in place to ensure if this was actually true.
 <br><br>
 The test consisted in arranging four cups of tea from which two had tea poured in first, and the remaining had milk poured in first. This situation rises the question: what is the probability of guessing what was poured in first for all four cups?
 <br><br>
 These questions are of an unconfortable rare breed often referred to as "brain teasers". Their utility reduces to very little, and they might be brought into conversations during technical interviews or simply by annoying co-workes with an uncontrollable urge to show off. Whatever the case, how can we build some intuition in order to make the process more enjoyable?
-
-<div id="st"><span style='font-style:italic;'>Divide and Conquery:</span> Break the problem into more managable pieces</div>
+<br><br><br>
+<div id="sst"><span style='font-style:italic;'>Divide and Conquery:</span> Break the problem into more managable pieces</div>
+<br>
 Let's bring the main question back to our attention:
 <br><br>
 <span style='font-weight:700; font-style:italic'>What is the probability of guessing (or knowing) what was poured in first in four cups, where half had milk first and the rest had tea first?</span>
@@ -89,7 +287,7 @@ or,
 <span style='color:salmon;'>\( \binom{tea}{milk} \)</span>
 <span style='color:red; font-weight:500; font-size:40px;'>&cross;</span>
 <br><br>
-But those only amount to only two of all possible failures, where in fact there could be five failures. And, since we know there is only one true arrangements, there is only one way in which the contester can succed. This gives us a total number of six arrangements, so now we have figured out our <span style='font-weight:600;'>total outcome space</span>.
+But those only amount to only two of all possible failures, where in fact there could be five failures. And, since we know there is only one true arrangements, there is only one way in which the contester can succeed. This gives us a total number of six arrangements, so now we have figured out our <span style='font-weight:600;'>total outcome space</span>.
 <br><br>
 Let's list them all out just for the sake of rigor and clarity.
 <br><br>
