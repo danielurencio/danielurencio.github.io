@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+<title>Hypothesis testing</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+
+<div id="t">&ensp;Hypothesis Testing </div>
+<div id="p">
+This topic can often feel unintuitive, obscure and even mechanical. It can sometimes be narrowed down to looking at tables to find p-values, degrees of freedom, and comparing numbers to a given z-score, or t-statistic.
+<br><br>
+Underlyingly, it seems to be the case that we need to "reject some hypothesis" just because the comparison of two numbers compels us to do so. But, why? Is it a social convention? Some sort of black magic? Should we belive the outcome of the test because there are textbooks that discuss the matter?
+<br><br>
+The motivation of this article is to provide the intuition behind hypothesis testing. Rather that taking it for granted, we will go through the foundational concepts that will allow us to comprehend why it matters, and why p-values and significance levels are important concepts when doing these tests.
+<br><br>
+In the mean time, we can say that this whole endevour matters because everytime we want to "test something" we could say that we are challenging the <span style="font-style:italic;">status quo</span>. And, in order to do so, we need to gather evidence that support the notion that "business as usual" is not that usual when there is some sort of intervention.
+<br><br>
+Take, for instance, the question <span style="font-style:italic;">"does a drug improves recovery from a disease?"</span>, or <span style="font-style:italic;">"do price discounts really drives demand up?"</span>. In this type of questions we stem from the fact that there is no effect on our intervention (drug consumption, or price discount) unless proved otherwise, and proving otherwise involes leaning on statistical and data-driven solutions. This is what hypothesis testing is all about.
+</div>
+
+<div id="st">Probability Distributions</div>
+<div id="p">
+Given that we can think of probabilities as "shares of possibilities", a distribution of probabilities would allow us to see how probabilities concentrate across different events. Consider, for instance, the more than typical example of tossing a coin except we'll do it several times. We know that a coin has two faces so the probability of observing either face is 50%, therefore, if we toss the coin six times, for instance, we would expect to see three heads and three tails. Nonetheless, sometimes it won't be the case.
+<br><br>
+<pre><code class="python" style="padding:22px;">
+import random
+import matplotlib.pyplot as plt
+
+# One trial can be one coin toss
+def trial(p):
+    return 1 if random.random() > p else 0
+
+# We can perform a trial "n" times    
+def n_trials(n, p):
+    return sum([trial(p) for _ in range(n)])
+
+# Let's say, an experiment is set of trials, and we'll run
+# 10k experiments, each of which involves 6 coin tosses.
+# For each experiment, we'll record the number of "heads".
+experiments = []
+for k in range(10000):
+    experiments.append(n_trials(6, 1/2))
+
+# Do we see all the time a value of 0.5? If not, whata other
+# values do we see?
+counts = {e: len([v for v in experiments if e == v])
+          for e in set(experiments)}
+
+# Get the values, or events, in the X axis,
+# and the counts, or frequencies, in the Y-axis
+x = [c for c, h in counts.items()]
+y = [h for c, h in counts.items()]
+fig, ax = plt.subplots()
+ax.bar(x, y)
+
+# Remove bounding boxes and save/display image
+[ax.spines[v].set_visible(False)
+ for v in ('top', 'bottom', 'left', 'right')]
+plt.savefig('trials_n_6.png', bbox_inches='tight', pad_inches=0)
+plt.show()
+</code></pre>
+The previous code would generate the following plot:
+</div>
+<img src="trials_n_6.png" style="display:block; margin:auto;"/>
+<br>
+<div id="p">
+As previously mentioned, it is not the case that we always see three exact heads everytime we toss six coins. Some times we got none, and some others we got all six heads!
+<br><br>
+The bar plot, or histogram, exhibits that there might be some natural variation that simply comes from the process of tossing coins multiple times. That is why we said that "a distribution of probabilities would allow us to see how probabilities concentrate across different events"; where the term "events" refer to the values in the horizontal axis, for example "getting 3 heads out of 6" or "0 out of 6". These are events, that can be also thought of as the outcomes from our experiments.
+<br><br>
+We, however, can see that most of the time we get 3 out of 6 tosses, since that is what we could expect as the most probable or frequent outcome: observing heads half of the time whenever we are tossing coins.
+<br><br>
+Now, we have introduced the notion of probability distribuitions as how frequencies concentrate over diferent values (or events). Let's round this discussion off by watching what happens when, with a fixed number of 10,000 experiments, we increase the number of trials in each experiment. Let's consider doing 20 and 1,000 trials, but for that we should refactor the code to make this task more managable.
+<br><br>
+<pre><code class="python" style="padding:10px;">
+import random
+import matplotlib.pyplot as plt
+
+class Experiment:
+    def __init__(self, p, k, n):
+        self.p = p
+        self.k = k
+        self.n = n
+
+    # One trial can be one coin toss
+    def trial(self):
+        return 1 if random.random() > self.p else 0
+
+    # We can perform a trial "n" times
+    def n_trials(self):
+        return sum([self.trial() for _ in range(self.k)])
+
+    def run_experiments(self):
+        # Let's say, an experiment is set of trials, and we'll run
+        # n experiments, each of which involves k coin tosses.
+        # For each experiment, we'll record the number of "heads".
+        experiments = []
+        for k in range(self.n):
+            experiments.append(self.n_trials())
+
+        counts = {e: len([v for v in experiments if e == v])
+                  for e in set(experiments)}
+        return counts
+        
+
+    def __call__(self):
+	    counts = self.run_experiments()
+        # Get the values, or events, in the X axis,
+	    # and the counts, or frequencies, in the Y-axis
+	    x = [c for c, h in counts.items()]
+	    y = [h for c, h in counts.items()]
+	    fig, ax = plt.subplots()
+	    ax.bar(x, y)
+
+	    # Remove bounding boxes and save/display image
+	    [ax.spines[v].set_visible(False)
+	     for v in ('top', 'bottom', 'left', 'right')]
+	    plt.savefig(f'trials_n_{self.k}.png',
+	                bbox_inches='tight', pad_inches=0)
+	    plt.show()
+
+</code></pre>
+<br>
+After declaring the previous <code>class</code>, if we run:
+<br><br>
+<code class="python"><pre>
+Experiment(0.5, 20, 10000)()
+</code></pre>
+we get:
+<br><br>
+<img src="trials_n_20.png" style="display:block; margin:auto;"/>
+<br><br>
+Similarly, if we do:
+<br><br>
+<code class="python"><pre>
+Experiment(0.5, 1000, 10000)()
+</code></pre>
+<img src="trials_n_1000.png" style="display:block; margin:auto;"/>
+<br><br>
+It might come to our the attention that as we increase the number of trails (coin tosses; \( k \), from 6 to 20, and from 20 to 1000, until \( \infty \)). The number of distinct events increases; this is equivalent to the size of the bins in the X axis getting smaller and smaller. As this happens, we can think of the events, or values, in the horizontal axis as a continuum (hence, a continuos randon variable). For a very small change in \( X \), we can associate a frequency in the vertical axis \( Y \), regardless of how infinitesimal this change is.
+<br><br>
+This "continuum" across both \( X \) and \( Y \) can be generalized because we can visualize a solid line that generalizes this relationship. Now, we are ready to discuss how these lines constitutes <span style="font-weight:600;">probability density functions</span> as a means to describe the "concentration of probabilities" along the range of a random variable.
+<br><br>
+<img src="normal_distribution_only_axes.png" style="display:block; margin:auto;"/>
+</div>
+<div id="st">Probability Density Function</div>
+<div id="st">Cumulative Distribution Function</div>
+<div id="st">Central Limit Theorem</div>
+<pre><code class="python">
+  from scipy.stats import norm
+
+</code></pre>
+
+</body>
+</html>
