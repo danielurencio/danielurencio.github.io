@@ -245,12 +245,48 @@ for y in (y_a, y_b, y_c):
 plt.show()
 </code></pre>
 <img src="three_normal_ppfs.png" style="display:block; margin:auto;"/>
+<br><br>
+This concept of a function's inverse is very useful in te context of hypothesis testing, as it allows us to obtain critical values that can help us determine confidence intervals and thresholds for hypothesis testing.
+
+Consider a normal standard normal distribution, that is \( X \sim \mathcal{N}(\mu,\,\sigma)\). If we wanted two compute the associated values to the 5% of the distribution for both tails (that is 2.5% on each end), we can do the following:
+<br><br>
+<code class="python"><pre>
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+import numpy as np  # We need numpy for array operations
+
+alpha = 0.05
+lower_bound = alpha / 2
+upper_bound = 1 - (alpha / 2)
+
+lower_z_critic = norm.ppf(lower_bound, loc=0, scale=1)
+upper_z_critic = norm.ppf(upper_bound, loc=0, scale=1)
+
+# Convert to numpy arrays
+x = np.array([d/10 for d in range(-50, 51)])
+y = np.array([norm.pdf(d, loc=0, scale=1) for d in x])
+
+plt.plot(x, y)
+
+# Shade lower rejection region
+plt.fill_between(x[x <= lower_z_critic],
+                 y[x <= lower_z_critic],
+                 color='red', alpha=0.3)
+
+# Shade upper rejection region
+plt.fill_between(x[x >= upper_z_critic],
+                 y[x >= upper_z_critic],
+                 color='red', alpha=0.3)
+
+plt.show()
+</code></pre>
+<img src="shaded_significance_area.png" style="display:block; margin:auto;"/>
 </div>
 <div id="st">Central Limit Theorem</div>
-<pre><code class="python">
-  from scipy.stats import norm
-
-</code></pre>
-
+<div id="p">
+We have reached to one of the main foundational concepts of how hypothesis testing works. Everything we've covered so far was pivotal to explain the importance of the Central Limit Theorem (CLT). Let's remind ourselves about the intuition regarding "challenging the <span style="font-style:italic;">status quo</span>" using evindence backed by data.
+<br><br>
+CLT provides us with some interesting properties that allows us to use our evidence to see if it is as meaningful, or significant, as we would need.
+</div>
 </body>
 </html>
