@@ -187,9 +187,65 @@ plt.show()
 </code></pre>
 <img src="three_normal_distributions.png" style="display:block; margin:auto;"/>
 <br><br>
+We can compute the equivalent using <code>scipy</code> like this:
+<br>
+<code class="python"><pre>
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+x = [d/10 for d in range(-50, 51)]
+y_a = [norm.pdf(d, loc=0, scale=1) for d in x]
+y_b = [norm.pdf(d, loc=1.2, scale=0.8) for d in x]
+y_c = [norm.pdf(d, loc=0, scale=2) for d in x]
+
+for y in (y_a, y_b, y_c):
+    plt.plot(x, y)
+
+plt.show()
+</code></pre>
+<br>
 We can see three normal distributions with three different parameters \(\mu\) and \(\sigma\). As mentioned earlier, the output of the function is not a probability, but the likelihood of observing the data under those parameters.
 </div>
 <div id="st">Cumulative Distribution Function</div>
+<div id="p">
+The probability density function, as discussed, is a description of how the probability is concentrated amongst diferent values of our random variable. We know that if we sum the area under the curve we would amount to the totality of events, this is what an integration does at the end of the day.
+<br><br>
+The integration of the probability density function is the <span style="font-weight: 600;">cumulative distribution function (CDF)</span>. This is a very useful shortcut for calculating the probability of observing a value less or equal to the \(x\) passed thorugh the function.
+<br><br>
+<code class="python"><pre>
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+x = [d/10 for d in range(-50, 51)]
+y_a = [norm.cdf(d, loc=0, scale=1) for d in x]
+y_b = [norm.cdf(d, loc=1.2, scale=0.8) for d in x]
+y_c = [norm.cdf(d, loc=0, scale=2) for d in x]
+
+for y in (y_a, y_b, y_c):
+    plt.plot(x, y)
+
+plt.show()
+</code></pre>
+<img src="three_normal_cdfs.png" style="display:block; margin:auto;"/>
+<div id="st">Inverse of Cumulative Distribution Function</div>
+Instead of knowing what is the probability associated to a certain range of values, we might be interested in the value associated to a probability.
+<br><br>
+<code class="python"><pre>
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+x = [d/10 for d in range(-50, 51)]
+y_a = [norm.ppf(d, loc=0, scale=1) for d in x]
+y_b = [norm.ppf(d, loc=1.2, scale=0.8) for d in x]
+y_c = [norm.ppf(d, loc=0, scale=2) for d in x]
+
+for y in (y_a, y_b, y_c):
+    plt.plot(x, y)
+
+plt.show()
+</code></pre>
+<img src="three_normal_ppfs.png" style="display:block; margin:auto;"/>
+</div>
 <div id="st">Central Limit Theorem</div>
 <pre><code class="python">
   from scipy.stats import norm
