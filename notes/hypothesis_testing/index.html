@@ -295,6 +295,30 @@ plt.show()
 We have reached to one of the foundational concepts over which the notion of hypothesis testing is built upons. Everything we've covered so far was pivotal to explain the importance of the Central Limit Theorem (CLT). Let's remind ourselves about the intuition regarding "challenging the <span style="font-style:italic;">status quo</span>" using evindence backed by data.
 <br><br>
 CLT provides us with some interesting properties that allows us to see if our evidence is as meaningful, or significant, as we would need to challenge the <span style="font-style:italic;">status quo</span>. Implicitly, we already explored CLT at the beggining while performing our multiple coin toss experiment. Every experiment consisted in tossing a coin \( k \) times, and we ran \( n \) experiments; that is the equivalent of obtaining \(n\) samples from a larger population of sike \(k\).
+<br><br>
+This is related to CLT because what this theorem states is that <span style="font-weight:600;">the sampling mean of a larger population follows a normal distribution even if that distribution is not normal</span>. This is also the case for other types of measurements, such as counts, proportions, and others. We could indeed observe that the counts of our trials turned out to be normally distributed after generating multiple experiments (or samples).
+<br><br>
+Now, to exemplify how the sampling mean distribution is normal even if the population is not, consider a fictitious rural town of 1,000 inhabitants for which we know their weekly income in some currency. This distribution is lognormal as most of the people have low income and only a handful is "rich".
+<br><br>
+$$
+\large \displaystyle
+f(x; \mu, \sigma) = \frac{1}{x \, \sigma \sqrt{2\pi}}
+  \exp\!\Bigl(-\tfrac{(\ln x - \mu)^2}{2 \sigma^2}\Bigr)
+  \quad\text{for}\; x > 0, \sigma > 0.
+$$
+<br>
+Let's generate a distribution using python:
+<br><br>
+<code class="python"><pre>
+import matplotlib.pyplot as plt
+from scipy.stats import lognorm
+
+samples = lognorm.rvs(s=0.8, loc=0, scale=80,
+		      size=10000, random_state=42)
+plt.hist(samples, bins=50, color='orange', alpha=0.7)
+plt.show()
+</code></pre>
+<img src="lognormal_rural_income.png" style="display:block; margin:auto;"/>
 </div>
 </body>
 </html>
