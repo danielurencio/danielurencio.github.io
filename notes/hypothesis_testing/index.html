@@ -401,7 +401,12 @@ plt.hist(stds, bins=100, color="mediumseagreen")
 plt.show()
 </code></pre>
 <img src="sampling_stds_distribution.png" style="display:block; margin:auto;"/>
-<br>
+<br><br>
+Why does this happen? How is it possible that some calculation coming from a non-normal distribution ends up being normal? Although a sample is not the true population, it is a piece of it; hence, it is a piece of the greater truth. It is as though we were throwing darts at a target hanging on the wall. We might be awful at being precise, but after throwing multiple times, and averaging our results, it will turn out that the center of the target will somehow emerge in that calculation. Consider every sample as an attempt to hit the target's center, it might not be great, but multiple samples will capture some part of the truth. Just as we are aiming at the center with every dart, we are also aiming at the true parameter of the population with each sample statistic. Sometimes we'll be far off, some others we'll be close, but the totality of attemps will mostly look as though we've polished our aim.
+<br><br>
+So, what is the relationship of CLT with respect to hypothesis testing? Even if we don't have access to the entire population, a sample's statistic will most likely follow a normal distribution (even if the population does not). We can leverage the theorem to know where in the distribution our sample's statistic (or evidence) lies. Is our sample close to the center? Is it far off? If we have a challenging statement about the <span style="font-style:italic;">status quo</span>, is our evidence within trivial ranges? Or, it is sufficiently anomoulous to provoke second thoughts? Let's fiddle with a practical case to reinforce the intuition.
 </div>
+
+<div id="st">Practical Example: Is </div><br>
 </body>
 </html>
