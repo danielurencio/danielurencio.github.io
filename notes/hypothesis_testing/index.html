@@ -313,12 +313,33 @@ Let's generate a distribution using python:
 import matplotlib.pyplot as plt
 from scipy.stats import lognorm
 
-samples = lognorm.rvs(s=0.8, loc=0, scale=80,
-		      size=10000, random_state=42)
-plt.hist(samples, bins=50, color='orange', alpha=0.7)
+incomes = lognorm.rvs(s=0.8, loc=0, scale=80,
+		      size=10000, random_state=0)
+_ = plt.hist(incomes, bins=100, color='orange', alpha=0.7)
 plt.show()
 </code></pre>
 <img src="lognormal_rural_income.png" style="display:block; margin:auto;"/>
+<br><br>
+If we start sampling from the <code>incomes</code> population, say, with samples of a size of 200 elements, and per each sample we calculated the mean and stored it in a list. How would that distribution look like? Let's sample 5,000 times.
+<br><br>
+<code class="python"><pre>
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+
+sampling_means = list()
+for _ in range(5000):
+    sample = random.sample(list(incomes), k=200)
+    sample_mean = np.mean(sample)
+    sampling_means.append(sample_mean)
+
+
+_ = plt.hist(sampling_means, bins=100)
+plt.show()
+</code></pre>
+<br>
+<img src="sampling_means_distribution.png" style="display:block; margin:auto;"/>
+<br><br>
 </div>
 </body>
 </html>
