@@ -278,6 +278,14 @@ plt.fill_between(x[x >= upper_z_critic],
                  y[x >= upper_z_critic],
                  color='red', alpha=0.3)
 
+# Add annotations for critical values
+plt.text(lower_z_critic - 0.2, 0.05,
+	 f'z = {lower_z_critic:.3f}', 
+         horizontalalignment='right')
+plt.text(upper_z_critic + 0.2, 0.05,
+	 f'z = {upper_z_critic:.3f}', 
+         horizontalalignment='left')
+
 plt.show()
 </code></pre>
 <img src="shaded_significance_area.png" style="display:block; margin:auto;"/>
