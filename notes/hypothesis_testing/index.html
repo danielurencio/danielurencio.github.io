@@ -340,6 +340,68 @@ plt.show()
 <br>
 <img src="sampling_means_distribution.png" style="display:block; margin:auto;"/>
 <br><br>
+Let's do the same but instead of calculating the mean, let's calculate median, proportion of elements with income greater than 250, and the standard deviation. Before we proceed, we should write some functional code:
+<br><br>
+<code class="python"><pre>
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def stats_dist(arr, n, k, fn):
+    sampling_stats = []
+    arr = arr if isinstance(arr, list) else list(arr)
+    for _ in range(n):
+        sample = random.sample(arr, k=k)
+        sample_stat = fn(sample)
+        sampling_stats.append(sample_stat)
+    return sampling_stats
+
+
+def prop_gt(v):
+    def inner_fn(arr):
+    	return len([d for d in arr if d > v]) / len(arr)
+    return inner_fn
+
+
+def quantile_fn(q):
+    def inner_fn(arr):
+    	return np.quantile(arr, q)
+    return inner_fn
+
+
+# Generate samples per each statistic of interest
+medians = stats_dist(incomes, 5000, 200, quantile_fn(0.5))
+props_gt250 = stats_dist(incomes, 5000, 200, prop_gt(250))
+stds = stats_dist(incomes, 5000, 200, np.std)
+</code></pre>
+
+It is time to plot the distributions of our sample statistics.
+<br><br>
+
+<div id="sst">Sampling Medians</div><br>
+<code class="python"><pre>
+plt.hist(medians, bins=100, color="orangered")
+plt.show()
+</code></pre>
+<img src="sampling_medians_distribution.png" style="display:block; margin:auto;"/>
+<br>
+
+<div id="sst">Sampling Proportions > 250</div><br>
+<code class="python"><pre>
+plt.hist(props_gt250, bins=30, color="purple")
+plt.show()
+</code></pre>
+<img src="sampling_propsgth250_distribution.png" style="display:block; margin:auto;"/>
+<br>
+
+<div id="sst">Sampling Standard Deviations</div><br>
+<code class="python"><pre>
+plt.hist(stds, bins=100, color="mediumseagreen")
+plt.show()
+</code></pre>
+<img src="sampling_stds_distribution.png" style="display:block; margin:auto;"/>
+<br>
 </div>
 </body>
 </html>
