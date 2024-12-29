@@ -470,6 +470,30 @@ def groups_outcomes(n1: 'control group size',
 
 control, treatment = groups_outcomes(2500, 2500, 0.05, 0.07)
 </code></pre>
+First of all we need to check whether our treatment displays and effect. So let's check both proportions, or conversion rates.
+<br><br>
+<code class="python"><pre>
+p_0 = sum(control) / len(control)
+p_a = sum(treatment) / len(treatment)
+
+print(f'p_0: {p_0}\np_a: {p_a}\np_a - p_0: {round(p_a-p_0, 3)}')
+</code></pre>
+<br>
+Initially, we can see:
+<br><br>
+<code>
+p_0: 0.05
+<br>
+p_a: 0.07
+<br>
+p_a - p_0: 0.02
+</code>
+<br><br>
+We have a proportions difference different from \(0\)! That's a good start. Now, we need to evaluate if that value is statistically significant. To do so, we need to remember our significance level, \(\alpha = 0.05\). Is our observed statistic as extreme as our \(\alpha\)?
+<br><br>
+<div id="sst"><span style="font-style:italic;">P-value</span> Calculation</div>
+<br>
+A p-value is nothing but the associated probability of observing our statistic given the natural variation inherent to this type of calculation. In other words, we need to check the distribution of our statistic. We began this entire discussion doing coin toss experiments, that provided a distribution. We can do the same if we <span style="font-weight:600;">pool</span> all our records and sample from this pooled set.
 </div>
 </body>
 </html>
