@@ -25,33 +25,43 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
+# A priori settings
 pool = control + treatment
 control_size = 2500
 treatment_size = 2500
 alpha = 0.05
 
+# Let's sample N times
 sampling_stats = list()
 extreme_occurrences = 0
 for _ in range(2000):
+    # Randomize!
     random.shuffle(pool)
+    # Select control and treatment groups (with exclusion)
     pseudo_control = pool[:control_size]
     pseudo_treatment = pool[control_size:(control_size + treatment_size)]
+    # Calculate proportions
     pseudo_p_0 = sum(pseudo_control) / len(pseudo_control)
     pseudo_p_a = sum(pseudo_treatment) / len(pseudo_treatment)
+    # And save the sampled statistic
     pseudo_stat = pseudo_p_a - pseudo_p_0
     sampling_stats.append(pseudo_stat)
 
-    # It is important to convert to absolute values,
+    # Is our sampled statistic greater than our experiment observation?
+    # NOTE: It is important to convert to absolute values,
     # as this is a two-tailed test
     if abs(pseudo_stat) >= abs(observed_stat):
         extreme_occurrences += 1
 
-
+# What are our significant thresholds?
 significant_thresholds = (alpha / 2, (1 - (alpha / 2)))
 lower_crit = np.quantile(sampling_stats, alpha / 2)
 upper_crit = np.quantile(sampling_stats, 1 - (alpha / 2))
+
+# What is our p-value?
 p_value = round(extreme_occurrences / len(sampling_stats), 5)
-print(p_value)
+# Is our p-value as extreme as our significance level?
+print(f'{p_value} <= {alpha}:', p_value <= alpha)
 
 # Plot
 plt.hist(sampling_stats, bins=20, color='dodgerblue')

@@ -494,6 +494,81 @@ We have a proportions difference different from \(0\)! That's a good start. Now,
 <div id="sst"><span style="font-style:italic;">P-value</span> Calculation</div>
 <br>
 A p-value is nothing but the associated probability of observing our statistic given the natural variation inherent to this type of calculation. In other words, we need to check the distribution of our statistic. We began this entire discussion doing coin toss experiments, that provided a distribution. We can do the same if we <span style="font-weight:600;">pool</span> all our records and sample from this pooled set.
+<br><br>
+But, why do wee pool? For at least three reasons:
+<ol>1. If our null hypothesis states "there is no difference between conversion rates", then couldn't we treat both the variant and the control equally? After all, they are the same, right?</ol>
+<ol>2. Given that "there's no difference", we can treat the pooled set as our best source for inference because have a larger set that what we would have ended up with had we not combined both groups, therefore we have more sampling capabilities! Also, we can simulate our experiment multiple times (just like we did with the coins). That means we preserve the characteristics of the initial design, like control and treatment sizes, that way we are ensuring reproducibility without any type of bias or mistakes (as long as we randomize!)</ol>
+<ol>3. Sampling our statistic from our pooled set allows us to "recreate" the distribution. This implies we don't necessarily have to rely on "analytical methods". So if the CLT doesn't hold, we can still calculate p-values in a non-parametric, data-driven, fashion (but more on this later, perhaps).</ol>
+Let's see some code to clarify this idea.
+<br><br>
+<code class="python"><pre>
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+
+# A priori settings
+pool = control + treatment
+control_size = 2500
+treatment_size = 2500
+alpha = 0.05
+
+# Let's sample N times
+sampling_stats = list()
+extreme_occurrences = 0
+for _ in range(2000):
+    # Randomize!
+    random.shuffle(pool)
+    # Select control and treatment groups (with exclusion)
+    pseudo_control = pool[:control_size]
+    pseudo_treatment = pool[control_size:(control_size + \
+    					  treatment_size)]
+    # Calculate proportions
+    pseudo_p_0 = sum(pseudo_control) / len(pseudo_control)
+    pseudo_p_a = sum(pseudo_treatment) / len(pseudo_treatment)
+    # And save the sampled statistic
+    pseudo_stat = pseudo_p_a - pseudo_p_0
+    sampling_stats.append(pseudo_stat)
+
+    # Is our sampled statistic greater than our
+    # experiment's observation?
+    # NOTE: It is important to convert to absolute values,
+    # as this is a two-tailed test
+    if abs(pseudo_stat) >= abs(observed_stat):
+        extreme_occurrences += 1
+
+# What are our significant thresholds?
+significant_thresholds = (alpha / 2, (1 - (alpha / 2)))
+lower_crit = np.quantile(sampling_stats, alpha / 2)
+upper_crit = np.quantile(sampling_stats, 1 - (alpha / 2))
+
+# What is our p-value?
+p_value = round(extreme_occurrences / len(sampling_stats), 5)
+# Is our p-value as extreme as our significance level?
+print(f'{p_value} <= {alpha}:', p_value <= alpha)
+
+# Plot
+plt.hist(sampling_stats, bins=20, color='dodgerblue')
+plt.axvline(x=observed_stat, color='r')
+plt.axvline(x=lower_crit, ls='--')
+plt.axvline(x=upper_crit, ls='--')
+plt.show()
+</code></pre>
+<br>
+The result from the <span style='font-style:italic;'>a posteriori</span> analysis is the following:
+<br>
+<code>
+0.0025 <= 0.05: True
+</code>
+<br><br>
+<img src="ab_test_result_1.png" style="display:block; margin:auto;"/>
+<br><br>
+We can interpret the chart of our recreated histogram as a symmetrical distribution where the expected value is \(0.0\) (just as what \(H_{0}\) states). If our alternative free-tier offer has indead no impact whatsoever, we can expect to see our observed conversion rates difference within "regular" levels of variation. Nevertheless, this is not the case at all.
+<br><br>
+<span style="font-style:italic;">A priori</span> we designed an experiment were our "regular variation tolerance" would amount to \(95\%\) of our statistics total variation. Our p-value, on the other hand, tells us that a conversion rates different of \( 2\% \) is likely to be observed \(0.25\%\) of the time.
+<br><br>
+This, however, should not be interpreted as "it is true that the free-tier alternative will impact the business"; we should instead treat this as "significant evidence" of a causal effect that can be used as leverage to support a change in the way the free-tier is configured. Why? We haven't systematically tested this in the long run to begin with. And, secondly, what constitues "true" at the end of the day?
+<br><br>
+This is material for a deeper epistemological discussion, but, in the mean time, the only thing we have is an experiment result that we can interpret as "highly unlikely", so its cause might be attributed to the fact that we dilligently separated two random and representative groups where the "only" difference is the treatment they received.
 </div>
 </body>
 </html>
