@@ -411,14 +411,65 @@ So, what is the relationship of CLT with respect to hypothesis testing? Even if 
 <div id="p">
 Cloud Providers offer a free-tier for a certain period of time to aquire new costumers. The point is that potential costumers who test the product could convert to paying costumers if they like it. Assuming there is a pre-existing free tier, out of which 3% of costumers convert, the company in questionis analizing an alternative to explore whether this conversion rate can be increased.
 <ul>
-Control (A): The current free-tier offer of $300 credits for 90 days.
+<span style="font-weight:600;">Control (A):</span> The current free-tier offer of $300 credits for 90 days.
 </ul>
 
 <ul>
-Variant (B): An alternative offer:
-Smaller, Rolling Credits: $100 credits renewed every 30 days for three months, with unused credits expiring monthly.
-Emphasis on sustained engagement over time.
+<span style="font-weight:600;">Variant (B):</span> An alternative offer:
+<ul>&#8674; Smaller, Rolling Credits: <ul>$100 credits renewed every 30 days for three months, with unused credits expiring monthly.</ul></ul>
+<ul>&#8674; Emphasis on sustained engagement over time:<ul>Knowing credits will expire might incentivize more rigoruos exploration.</ul></ul>
 </ul>
+<div id="sst"><span style="font-style:italic;">A priori</span> Design</div>
+<br>
+<span style="font-weight:600;">Randomization</span>
+<br>
+This experiment would involve randomly selecting individuals for both groups. It is pivotal to ensure that the control and treatment group are as alike as possible so that the effect of the Free-Tier variant can be attributed to the treatment itself and not any other reason (there can be potential biases based on how these groups are selected).
+<br><br>
+<span style="font-weight:600;">Length and size</span>
+<br>
+Furthermore, let's assume this experiment is held for a period of time long enought so that sufficient data is gathered. For the sake of this example, the experiment ran fo a whole month and 50% of enrollments went through the variant.
+<br><br>
+Imagine we got 5,000 observations. Why this number? We'll get into more details when we cover <span style="font-weight:600; font-style:italic;">statistical power</span>.
+<br><br>
+<span style="font-weight:600;">Research Question & Significance Level</span>
+<br>
+We must play fair if we want to be certain that the experiment will reveal truly insightful results. This means that before gathering the data and analyzing the outcome "success" has to be defined beforehand. What do we mean by this? First, we need to have our research question clearly stated. In this case we want to answer:
+<br><br>
+<ul style="padding-right:50px;font-style:oblique;">Does our alternative free-tier configuration guarantee a conversion rate greater than 5%?</ul>
+<br>
+If we care about obtaining evidence to challenge the <span style="font-style:italic;">status quo</span> we need to state specifically what does <span style="font-style:italic;">status quo</span> means. The counterfactual would be our alternative scenario, that in which "business as usual" turned out to be unusual. The conventional jargon for this is to define a null and an alternative hypothesis, where, of course, the null refers to "business as usual".
+<ul>\(H_{0}: p_{a} - p_{0} = 0\) &ensp;<span style="font-style:oblique;">"There is no difference between conversion rates"</span></ul>
+<ul>\(H_{a}: p_{a} - p_{0} \neq 0\) &ensp;<span style="font-style:oblique;">"Conversion rates are different"</span></ul>
+Where \(p_{0}\) and \(p_{a}\) correspond to the conversion rates for the control and treatment groups respectively.
+<br><br>
+Hypothesis statement is important as while defining them a statistic is put in place. In this case we have a proportions difference. We can use these proportions not only to compare them once we are done with the experiment, we can also relay on CLT to attest whether the observed difference is large enough to be considered as "significant" evidence of a causal effect. How so?
+<br><br>
+We know that sampling proportions, hence proportion differences, follow a normal distribution. Does our observed difference fall within expected variations due to a "chance model"? Or, is it large enough to be deemed as unusual? How much is "large enough" then? Well, that is something we need to establish <span style="font-style:italic;">a priori</span>. Our <span style="font-weight:600;">significance level</span>, \(\alpha\), shoud be a probability out from the sampling distribution; we'll define it as \(0.05\) which means that our observed statistic should only be observed 5% of the time.
+<br><br>
+Why do we do all this before? We can always cheat and tweak our research criteria to accomodate our data. But that is a terrible practice, and we not only want to be straightforward with others, we also want to be honest with ourselves because being able to boost a business' revenue using science is a win-win for all.
+<br><br>
+<div id="sst"><span style="font-style:italic;">A posteriori</span> Analysis</div>
+<br>
+Let's construct our hypothetical datasets for our control and treatment groups.
+<br><br>
+<code class="python"><pre>
+def groups_outcomes(n1: 'control group size',
+                    n2: 'treatment group size',
+                    c: 'fraction of positives in control',
+                    t: 'fraction of positives in treatment'):
+    control_negatives = [0 for _ in range(int(n1*(1-c)))]
+    control_positives = [1 for _ in range(int(n1*c))]
+    control = control_negatives + control_positives
+
+    treatment_negatives = [0 for _ in range(int(n2*(1-t)))]
+    treatment_positives = [1 for _ in range(int(n2*t))]
+    treatment = treatment_negatives + treatment_positives
+    
+    return control, treatment
+    
+
+control, treatment = groups_outcomes(2500, 2500, 0.05, 0.07)
+</code></pre>
 </div>
 </body>
 </html>
