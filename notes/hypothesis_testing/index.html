@@ -248,7 +248,7 @@ plt.show()
 <br><br>
 This concept of a function's inverse is very useful in te context of hypothesis testing, as it allows us to obtain critical values that can help us determine confidence intervals and thresholds for hypothesis testing.
 
-Consider a normal standard normal distribution, that is \( X \sim \mathcal{N}(\mu,\,\sigma)\). If we wanted two compute the associated values to the 5% of the distribution for both tails (that is 2.5% on each end), we can do the following:
+Consider a normal standard normal distribution, that is \( X \sim \mathcal{N}(\mu,\,\sigma)\). If we wanted to compute the associated values to the 5% of the distribution for both tails (that is 2.5% on each end), we can do the following:
 <br><br>
 <code class="python"><pre>
 from scipy.stats import norm
@@ -517,10 +517,10 @@ sampling_stats = list()
 extreme_occurrences = 0
 for _ in range(2000):
     # Randomize!
-    random.shuffle(pool)
+    pool_ = random.sample(pool, len(pool))
     # Select control and treatment groups (with exclusion)
-    pseudo_control = pool[:control_size]
-    pseudo_treatment = pool[control_size:(control_size + \
+    pseudo_control = pool_[:control_size]
+    pseudo_treatment = pool_[control_size:(control_size + \
     					  treatment_size)]
     # Calculate proportions
     pseudo_p_0 = sum(pseudo_control) / len(pseudo_control)
@@ -557,7 +557,7 @@ plt.show()
 The result from the <span style='font-style:italic;'>a posteriori</span> analysis is the following:
 <br>
 <code>
-0.0025 <= 0.05: True
+0.0035 <= 0.025: True
 </code>
 <br><br>
 <img src="ab_test_result_1.png" style="display:block; margin:auto;"/>
@@ -572,11 +572,102 @@ This is material for a deeper epistemological discussion, but, in the mean time,
 <br><br>
 Anyways, did we reject the null? Yes, we did. Our p-value is far lesser that our pre-determined significance level.
 <br><br>
-<div id="st">Parametric vs Non-parmetric approach</div>
+<div id="st">Parametric vs Non-parametric approach</div>
 We didn't delve much into what is a parametric or non-parametric method regarding p-values. We'll do now.
+<br><br>
+This article began by exploring some analytical functions. We saw that <span style="font-style:italic;">probability density function (PDF)</span>, when integrated turns to a <span style="font-style:italic;">cumulative distribution function (CDF)</span>, and the inverse of the <span style="font-style:italic;">CDF</span>, the <span style="font-style:italic;">percentage point function (PPF)</span>, also known as <span style="font-style:italic;">quantile function</span>, allows us to know what value of a random variable corresponds to a certain probability.
+<br><br>
+If we know the parameters of our distribution we can leverage the <span style="font-style:italic;">PPF</span> to calculate p-values. So, what are the parameters of our distribution? Let's get calculate the from scratch relying on analytical methods such as the <span style="font-weight:600;">expectation rules</span>. Because of the CLT, we know that our sampling distribution of conversion rates (estimated proportions) follows a normal distribution \( \hat{p} \sim \mathcal{N}(\hat{\mu},\,\hat{\sigma})\).
+<br><br>
+<div id="sst">Getting \(\Large\hat{\mu}\)</div>
+Formally speaking, we can say that:
+$$
+\Large \displaystyle
+\mathbb{E}[p_a - p_0] = \mathbb{E}[0] = 0
+$$
+That is true because, under the null, we are saying that there is no difference between proportions.
+<br><br>
+<div id="sst">Getting \(\Large\hat{\sigma}\)</div>
+Considering that the variance is an expectation of deviations from the mean:
+$$
+\Large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\begin{align}
+\Var(X) &= \mathbb{E}[(X - \mathbb{E}[X])^{2}]
+\\      &= \mathbb{E}[X^{2} -2X\mathbb{E}[X] + (\mathbb{E}[X])^{2}]
+\\      &= \mathbb{E}[X^{2}] - 2\mathbb{E}[X]\mathbb{E}[X] + (\mathbb{E}[X])^{2}
+\\      &= \mathbb{E}[X^{2}] - (\mathbb{E}[X])^{2}
+\end{align}
+$$
+In the context of binary outcomes, such as potential costumer either converted to paying costumer or not, \( X \in [0, 1] \), so \(X^2 = X\) because \(0^2 = 0\) and \(1^2 = 1\); hence \(\mathbb{E}[X^2] = \mathbb{E}[X]\). Furthermore, since we know that the expectation of a binomial variable is its probability (we could also say proportion as \(\hat{p} = \frac{X}{n}\)), then we can state that \(\mathbb{E}[X] = p\). So,
+$$
+\Large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\begin{align}
+\Var(X) &= \mathbb{E}[X^{2}] - (\mathbb{E}[X])^{2}
+\\	&= \mathbb{E}[X] - (\mathbb{E}[X])^{2}
+\\      &= p - p^2
+\\      &= p\cdot(1 - p)
+\end{align}
+$$
+The previous expression refers to the variance of a single Bernoulli trial. Since we are dealing with multiple trials whe need to express the variance of our statistic as an average of multiple trials:
+$$
+\Large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\begin{align}
+\Var(\hat{p}) &= \frac{p\cdot(1 - p)}{n}
+\end{align}
+$$
+Now, since we know that:
+$$
+\Large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\begin{align}
+\Var(p_a - p_0) &= \Var(p_a) + \Var(p_{0})
+\end{align}
+$$
+
+Then,
+$$
+\large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\begin{align}
+\\hat{sigma} &= \sqrt{\frac{p_a\cdot(1 - p_a)}{n_a} + \frac{p_0\cdot(1 - p_0)}{n_0}}
+\\     &= \sqrt{\frac{0.07\cdot(1 - 0.07)}{2500} + \frac{0.05\cdot(1 - 0.05)}{2500}}
+\\     &= \sqrt{\frac{0.0651 + 0.0475}{2500}}
+\\     &= 0.00671
+\\     &\approx 0.007
+\end{align}
+$$
+<br>
+Let's revise what were the estimated parameter values that we got from the python code:
+<br><br>
+<code>
+>>> np.mean(sampling_stats)<br>
+0.00011440000000000003<br>
+>>> np.std(sampling_stats)<br>
+0.006616321685045248
+</code>
+<br><br>
+Now that we've estimated our parameters analytically, let's use the <span style="font-style:italic;"></span> to calculate again our p-value.
+<code class="python"><pre>
+# Parameters
+mean = 0
+std = 0.007
+observed_stat = 0.02
+
+# P-value for two-tailed test
+p_value = 2 * (1 - norm.cdf(observed_stat, loc=mean, scale=std))
+print("P-value:", p_value)
+</code></pre>
+<code>
+P-value: 0.004274733960172528
+</code>
 <div id="st">Statistical Power</div>
+...
 <div id="st">Type I & II Errors</div>
 ...
+<div id="st">A/B/C... Tests</div>
 </div>
 </body>
 </html>

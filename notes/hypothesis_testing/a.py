@@ -36,10 +36,14 @@ sampling_stats = list()
 extreme_occurrences = 0
 for _ in range(2000):
     # Randomize!
-    random.shuffle(pool)
+    pool_ = random.sample(pool, len(pool))#random.shuffle(pool)
     # Select control and treatment groups (with exclusion)
-    pseudo_control = pool[:control_size]
-    pseudo_treatment = pool[control_size:(control_size + treatment_size)]
+    pseudo_control = pool_[:control_size]
+    pseudo_treatment = pool_[control_size:(control_size + treatment_size)]
+
+    if len(pool_) != len(pseudo_control) + len(pseudo_treatment):
+        raise ValueError('No!')
+
     # Calculate proportions
     pseudo_p_0 = sum(pseudo_control) / len(pseudo_control)
     pseudo_p_a = sum(pseudo_treatment) / len(pseudo_treatment)
