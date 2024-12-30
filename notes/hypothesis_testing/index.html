@@ -650,18 +650,41 @@ Let's revise what were the estimated parameter values that we got from the pytho
 </code>
 <br><br>
 Now that we've estimated our parameters analytically, let's use the <span style="font-style:italic;"></span> to calculate again our p-value.
+<br><br>
 <code class="python"><pre>
+from scipy.stats import norm
+
 # Parameters
 mean = 0
 std = 0.007
 observed_stat = 0.02
 
 # P-value for two-tailed test
-p_value = 2 * (1 - norm.cdf(observed_stat, loc=mean, scale=std))
+left_area = norm.cdf(-1*observed_stat, loc=mean, scale=std)
+right_area = 1 - norm.cdf(observed_stat, loc=mean, scale=std)
+p_value = left_area + right_area
 print("P-value:", p_value)
 </code></pre>
 <code>
 P-value: 0.004274733960172528
+</code>
+<br><br>
+And, for the critical threshold values we can do this:
+<br><br>
+<code class="python"><pre>
+from scipy.stats import norm
+
+# Parameters
+alpha = 0.05
+
+# Critical thresholds
+lower_crit = norm.ppf(alpha / 2, loc=mean, scale=std)
+upper_crit = norm.ppf(1 - alpha / 2, loc=mean, scale=std)
+
+print("Critical thresholds:", lower_crit, upper_crit)
+</code></pre>
+<code>
+Critical thresholds: -0.013719747891780381 0.013719747891780378
 </code>
 <div id="st">Statistical Power</div>
 ...
