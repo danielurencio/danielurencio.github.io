@@ -537,7 +537,6 @@ for _ in range(2000):
         extreme_occurrences += 1
 
 # What are our significant thresholds?
-significant_thresholds = (alpha / 2, (1 - (alpha / 2)))
 lower_crit = np.quantile(sampling_stats, alpha / 2)
 upper_crit = np.quantile(sampling_stats, 1 - (alpha / 2))
 
