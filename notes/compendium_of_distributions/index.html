@@ -167,6 +167,84 @@ The geometric distribution helps identify how many trials are needed to achieve 
 The negative binomial distribution, however, can act as a shortcut by embedding the goal directly into the model. If we need to reach 100 customers in a day, and we know that, on average, 9 failures occur for every success, we can estimate that 900 failures are required to achieve 100 successes. Thus, the total effort involves 1,000 calls (900 failures + 100 successes).
 </li>
 </ul>
+
+
+
+
+<div id="st">Poisson</div>
+$$
+\large \displaystyle
+P(X = k) = \frac{\lambda^{k} \cdot e^{-\lambda}}{k!}, &emsp;  k \in [0, \infty)
+$$
+Where:
+<ol>
+<li>\(k:\) Number of events in an given space or time interval.</li>
+<li>\(\lambda:\) The average number of events in the space or time interval.</li>
+
+</ol>
+<br>
+<div id="sst">Parameters</div>
+<br>
+Mean
+$$
+\large \displaystyle
+\mathbb{E}[X] = \lambda
+$$
+Standard Deviation
+$$
+\large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\Var(X) = \lambda
+$$
+<div id="sst">Plot</div>
+ <pre>
+  <code class="python">
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import poisson
+
+# Parameters for the Poisson distribution
+lambda_values = [2, 5, 10]  # Average rates (λ)
+k = np.arange(0, 20)  # Number of events (k)
+
+# Plot the PMF for different λ values
+plt.figure(figsize=(10, 6))
+for lam in lambda_values:
+    pmf = poisson.pmf(k, lam)  # Poisson PMF
+    plt.plot(k, pmf, marker='o', label=f'λ = {lam}')
+
+# Customizing the plot
+plt.title('PMF of Poisson Distribution', fontsize=14)
+plt.xlabel('Number of Events (k)', fontsize=12)
+plt.ylabel('P(X = k)', fontsize=12)
+plt.xticks(k)
+plt.grid(alpha=0.4)
+plt.legend(title='Rate (λ)', fontsize=10)
+plt.tight_layout()
+
+# Display the plot
+plt.show()
+  </code>
+ </pre>
+<img src="img/poisson.png" style="display:block; margin:auto;"/>
+<br>
+<div id="sst">Intuition</div>
+<br>
+<span id="bold">What?</span>
+<br>
+Blah
+<br><br>
+<span id="bold">When?</span>
+<ul>
+<li>A</li>
+<li>B</li>
+</ul>
+
+<br><br>
+<span id="bold">Why?</span>
+<br>
+Blah
+
 </div>
 </body>
 </html>
