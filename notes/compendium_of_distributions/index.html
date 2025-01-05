@@ -35,6 +35,83 @@ For a number of distributions we'll cover:
 <li>How does a plot looks like?</li>
 <li>What it models / when to use it?</li>
 </ol>
+
+<div id="st">Binomial</div>
+$$
+\large
+P(X = k) = \binom{n}{k} \cdot p^{k} \cdot (1 - p)^{n-k}
+$$
+Where:
+<ul>
+<li>\(k:\) Number of successes.</li>
+<li>\(n:\) Number of trials.</li>
+<li>\( P(X = k): \) Probability of \(k\) successes in \(n\) trials.</li>
+<li>\(\binom{n}{k} = \frac{n!}{k! (n - k)!}:\) Binomial coefficient. Number of ways that we can arrange \(k\) successes in \(n\) trials.</li>
+<li>\(p:\) Probability of success.</li>
+<li>\(1 - p:\) Probability of failure.</li>
+</ul>
+<br>
+<div id="sst">Parameters</div>
+<br>
+Mean
+$$
+\large
+\mathbb{E} = n \cdot p
+$$
+Variance
+$$
+\large \displaystyle
+\newcommand{\Var}{\operatorname{Var}}
+\Var(X) = n \cdot \ p \cdot \ (1 - p)
+$$
+
+
+<div id="sst">Plot</div>
+ <pre>
+  <code class="python">
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+# Parameters for the binomial distribution
+n_values = [10, 50]  # Number of trials (n)
+p_values = [0.2, 0.5, 0.8]  # Probabilities of success (p)
+
+# Plot the PMF for different combinations of n and p
+plt.figure(figsize=(12, 8))
+for n in n_values:
+    for p in p_values:
+        k = np.arange(0, n + 1)  # Number of successes (0 to n)
+        pmf = binom.pmf(k, n, p)  # Binomial PMF
+        plt.plot(k, pmf, marker='o', label=f'n = {n}, p = {p}')
+
+# Customizing the plot
+plt.title('PMF of Binomial Distribution', fontsize=14)
+plt.xlabel('Number of Successes (k)', fontsize=12)
+plt.ylabel('P(X = k)', fontsize=12)
+plt.xticks(range(max(n_values) + 1))
+plt.grid(alpha=0.4)
+plt.legend(title='Parameters', fontsize=10)
+plt.tight_layout()
+
+# Display the plot
+plt.show()
+  </code>
+ </pre>
+<img src="img/binomial.png" style="display:block; margin:auto;"/>
+<br>
+<div id="sst">Intuition</div>
+<br>
+<span id="bold">What?</span>
+<br>
+It models the number of successes in a fixed number of independent trials, where each trial has the same probability of success. In other words, "If we repeat an experiment \(n\) times, what is the probability of observing \(k\) successes?
+<br><br>
+<span id="bold">When?</span>
+<ul>
+<li>Permutation tests. While performing an hypothesis test, the binomial distribution can help us simulate a distribution under the null to calculate the p-value of our observed statistic.</li>
+<li>Quality control. It can help in establishing quality standards or detect significat deviations.</li>
+</ul>
+<br>		
 <div id="st">Geometric</div>
 $$
 \large \displaystyle
@@ -48,7 +125,7 @@ $$
 \large \displaystyle
 \mathbb{E}[X] = \frac{1}{p}
 $$
-Standard Deviation
+Variance
 $$
 \large \displaystyle
 \newcommand{\Var}{\operatorname{Var}}
@@ -190,7 +267,7 @@ $$
 \large \displaystyle
 \mathbb{E}[X] = \lambda
 $$
-Standard Deviation
+Variance
 $$
 \large \displaystyle
 \newcommand{\Var}{\operatorname{Var}}
