@@ -232,18 +232,21 @@ plt.show()
 <br>
 <span id="bold">What?</span>
 <br>
-Blah
+Used to model the occurrence of discrete events over a fixed interval of time, space, or another measurable domain. It is interested in the deviations from an expected rate, or frequency of events (\(\lambda\)).
 <br><br>
 <span id="bold">When?</span>
 <ul>
-<li>A</li>
-<li>B</li>
+<li>Inbbound management in a call center. Modeling the amount of calls to be received in a particular period can aid capacity planning.</li>
+<li>A supermarket observes an average of \(\lambda = 5\) customers arriving at checkout counters every 10 minutes. Estimating the likelihood of having a certain number of customers in line within a specific interval can impact on staffing to improve customer experience by minimizing wait times.</li>
+<li>If a highway records an average of \(\lambda = 2\) accidents per day (which can be interpreted as "rare" events), Poisson can be leveraged for scheduling and optimizing emergency response times.</li>
 </ul>
 
 <br><br>
 <span id="bold">Why?</span>
 <br>
-Blah
+Geometric, Negative Binomial, and Poisson can help us in "capacity planning" or "resources allocation"; nonetheless, the first two, geometric and negative binomial, seem to focus on effort-driven situations, whilst Poisson focuses on "things that happen" somewhere or sometime.
+<br><br>
+In the typical call center example, the negative binomial and geometric distributions seem to care about the "outbound" aspect of a call center (making calls to reach costumers). Meanwhile, Poisson can be more related to the "inbound" nature of a call center, where you receive the calls rather than making them. Hence, it is different in its "capacity planning" nature, as one focuses on "efforts to achieve" (effort-driven) whilst the other on "efforts to handle" events that occur independently of our actions (event-driven).
 
 </div>
 </body>
